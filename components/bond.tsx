@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { checkMessage } from '@/lib/filter.mjs';
-import { time, type Msg } from '@/lib/store';
+import { isCrisis } from '@/lib/filter.mjs';
+import { STATUS_LABEL, STATUSES, time, type Msg, type Status } from '@/lib/store';
 import { Ink, type InkName } from '@/components/ink';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/input';
@@ -80,41 +80,39 @@ export function CrisisSheet({ open, onClose, onTalk }: { open: boolean; onClose:
   );
 }
 
-/** Composer with the language filter and crisis check. onSend receives the text and whether it is a crisis. */
+/** Composer with the crisis check. onSend receives the text and whether it is a crisis.
+ *  No language filter: messages only go to the psychologist, and a student must be able to quote what was said to them. */
 export function Composer({ onSend, label }: { onSend: (text: string, crisis: boolean) => void; label: string }) {
   const [text, setText] = useState('');
-  const [error, setError] = useState('');
-  const field = useRef<HTMLTextAreaElement>(null);
   function submit(e: React.FormEvent) {
     e.preventDefault();
     const t = text.trim();
     if (!t) return;
-    const verdict = checkMessage(t);
-    if (verdict === 'offensive') {
-      setError('Mesajul are cuvinte jignitoare, așa că nu a fost trimis. Poți să-l reformulezi.');
-      // Failed attempt: shake the field once (a remount would steal focus, so use WAAPI).
-      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        field.current?.animate({ transform: ['translateX(0)', 'translateX(-10px)', 'translateX(10px)', 'translateX(-6px)', 'translateX(6px)', 'translateX(-3px)', 'translateX(0)'] }, { duration: 360, easing: 'ease-out' });
-      }
-      return;
-    }
-    setError('');
     setText('');
-    onSend(t, verdict === 'crisis');
+    onSend(t, isCrisis(t));
   }
   return (
     <form className="composer" onSubmit={submit}>
       <label htmlFor="msg" className="sr-only">{label}</label>
       <Textarea
-        ref={field}
         id="msg" rows={2} value={text} maxLength={1000} placeholder={label}
-        aria-invalid={!!error} aria-describedby={error ? 'msg-err' : undefined}
-        onChange={(e) => { setText(e.target.value); if (error) setError(''); }}
+        onChange={(e) => setText(e.target.value)}
         onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submit(e); } }}
       />
       <Button type="submit" disabled={!text.trim()}>Trimite</Button>
-      {error && <p id="msg-err" className="error" role="alert">{error}</p>}
     </form>
+  );
+}
+
+/** The four report steps as a line of segments with words, never colour alone. */
+export function Steps({ status }: { status: Status }) {
+  const at = STATUSES.indexOf(status);
+  return (
+    <ol className="steps" aria-label={`Stare: ${STATUS_LABEL[status]}`}>
+      {STATUSES.map((st, i) => (
+        <li key={st} data-done={i <= at || undefined} aria-current={i === at ? 'step' : undefined}>{STATUS_LABEL[st]}</li>
+      ))}
+    </ol>
   );
 }
 

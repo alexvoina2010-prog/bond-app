@@ -191,9 +191,17 @@
   .composer .error { grid-column: 1 / -1; }
   .thread > li:last-child { scroll-margin-bottom: 120px; }
   .student .thread > li:last-child { scroll-margin-bottom: 190px; }
-  .circle-msg { display: grid; gap: 2px; padding: 12px 0; border-bottom: 1px solid var(--line); }
-  .circle-msg .meta { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
-  .circle-msg .alias { font-weight: 600; font-size: var(--text-ui); }
+  /* Report steps: segments plus words, so the state never rests on colour alone. */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .steps li { display: grid; gap: 4px; font-size: var(--text-xs); color: var(--muted); }
+  .steps li::before { content: ''; height: 3px; border-radius: 2px; background: var(--line); transition: background var(--dur-move) var(--ease-move); }
+  .steps li[data-done] { color: var(--ink); }
+  .steps li[data-done]::before { background: var(--ink); }
+  .steps li[aria-current] { font-weight: 600; }
+  .file { font-size: var(--text-ui); max-width: 100%; }
+  .bullets { display: grid; gap: 6px; padding-left: 1.1em; list-style: disc; }
+  details.panel > summary { cursor: pointer; }
+  details.panel[open] > summary { margin-bottom: 8px; }
   .notice { padding: 12px 14px; border-radius: var(--radius-sm); background: var(--surface); font-size: var(--text-ui); }
 
   /* Crisis sheet */

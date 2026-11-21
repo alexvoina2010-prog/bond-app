@@ -18,7 +18,7 @@ export default function PsyLayout({ children }: { children: React.ReactNode }) {
     '/psiholog': s.alerts.filter((a) => !a.seen).length,
     '/psiholog/conversatii': s.threads.filter((t) => t.msgs.at(-1)?.from === 'elev').length,
     '/psiholog/programari': s.bookings.filter((b) => b.status === 'cerută').length,
-    '/psiholog/rapoarte': s.reports.filter((r) => !r.seen).length,
+    '/psiholog/rapoarte': s.reports.filter((r) => r.status === 'primit').length,
   } : {};
   return (
     <div className="psy">

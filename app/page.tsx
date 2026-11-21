@@ -17,7 +17,7 @@ export default function Entry() {
         </div>
         <div className="stack">
           <h1>Un loc sigur în care spui ce se întâmplă la școală.</h1>
-          <p className="muted">Scrii psihologului școlii sau vorbești anonim cu alți elevi care au trecut prin același lucru.</p>
+          <p className="muted">Scrii psihologului școlii sau spui, anonim, ce ți s-a întâmplat ori ce ai văzut. Apoi vezi ce se face.</p>
         </div>
         <form className="stack" onSubmit={(e) => { e.preventDefault(); router.push('/elev'); }}>
           <div>

@@ -6,7 +6,7 @@ import { useMounted } from '@/lib/store';
 const TABS = [
   { href: '/elev', label: 'Acasă', icon: <path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z" /> },
   { href: '/elev/psiholog', label: 'Psiholog', icon: <path d="M5 5h14v10H9l-4 4z" /> },
-  { href: '/elev/cercul', label: 'Cercul', icon: <><circle cx="9" cy="12" r="5" /><circle cx="15" cy="12" r="5" /></> },
+  { href: '/elev/rapoarte', label: 'Rapoarte', icon: <path d="M6 20V4h9l-1.5 3.5L15 11H6" /> },
   { href: '/elev/resurse', label: 'Resurse', icon: <path d="M5 4h10l4 4v12H5zM9 12h6M9 16h6" /> },
 ];
 
@@ -18,7 +18,8 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
     <div className="student">
       <header className="topbar">
         <Link href="/elev" className="wordmark">bond</Link>
-        <Link href="/" className="exit">Ieși</Link>
+        {/* Quick exit: replaces this page in history, so Back does not return to bond. */}
+        <button type="button" className="exit" onClick={() => location.replace('https://www.google.ro/')}>Ieși repede</button>
       </header>
       <main>{mounted ? children : null}</main>
       <nav className="tabbar" aria-label="Meniu">

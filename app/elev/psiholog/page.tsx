@@ -70,7 +70,7 @@ export default function StudentPsy() {
             </div>
           </form>
         ) : (
-          <Button variant="secondary" onClick={() => setBooking(true)}>Programează-te la cabinet</Button>
+          <div className="stack-tight justify-items-start"><Button variant="secondary" onClick={() => setBooking(true)}>Programează-te la cabinet</Button><p className="muted small">Programarea o vede doar psihologul. Nu apare în orarul clasei.</p></div>
         )}
       </section>
 
