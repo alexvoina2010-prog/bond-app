@@ -1,6 +1,13 @@
 # bond v3: demo (FIX Cluj, 26 Nov 2026)
 
-Version 3 is version 2 ("Linie de cerneală", Visage) changed by the Idea-to-Launch sprint at S3.5. The dossier is in `../business-team/dossier/bond/`: see `07-solution/solution-options.md` (option O2) and `07-solution/sketch.md`. **Version 2 is unchanged in `../bond-app-v2` (port 3101) and is the fallback for the demo.**
+Version 3 is version 2 ("Linie de cerneală", Visage) changed by the Idea-to-Launch sprint at S3.5. The dossier is in `../business-team/dossier/bond/`: see `07-solution/solution-options.md` (option O2) and `07-solution/sketch.md`. **This folder is a git repo with every version as a tag (`v1`, `v2`, `v3`). Version 2 is the fallback for the demo:**
+
+```
+git stash -u        # only if you have unsaved changes
+git checkout v2     # same dependencies, runs on port 3101
+npm run dev
+git checkout main   # back to v3 (then `git stash pop` if you stashed)
+```
 
 Clickable demo with made-up data. No server: everything lives in the browser (localStorage) and syncs between windows of the same browser.
 
