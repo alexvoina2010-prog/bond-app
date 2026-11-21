@@ -27,7 +27,7 @@ export const ME = 'Elev, clasa a VII-a (tu, în demo)';
 export const SLOTS = ['Luni, 10:00', 'Luni, 12:00', 'Marți, 11:00', 'Miercuri, 9:00', 'Joi, 13:00', 'Vineri, 10:00'];
 export const KINDS = ['Jigniri sau porecle', 'Lovituri sau îmbrânceli', 'Online (mesaje, poze, grupuri)', 'Excludere din grup', 'Altceva'];
 
-const KEY = 'bond-demo-v1';
+const KEY = 'bond-demo-v2'; // bumped when the seed text changes, so old demo data is not kept
 const min = 60_000;
 export const uid = () => Math.random().toString(36).slice(2, 10);
 
@@ -38,7 +38,7 @@ function seed(): State {
     myAlias: `Nor-${10 + Math.floor(Math.random() * 89)}`,
     threads: [
       { id: 'live', who: ME, live: true, msgs: [
-        { id: uid(), from: 'psiholog', text: 'Bună! Sunt psihologul școlii. Poți să-mi scrii oricând despre ce te frământă. Ce vorbim aici rămâne între noi.', at: now - 50 * min },
+        { id: uid(), from: 'psiholog', text: 'Bună! Sunt psihologul școlii. Poți să-mi scrii oricând despre ce te frământă. Ce îmi scrii aici citesc doar eu. Dacă ești în pericol, căutăm ajutor împreună.', at: now - 50 * min },
       ] },
       { id: 's1', who: 'Elevă, clasa a X-a', msgs: [
         { id: uid(), from: 'elev', text: 'Într-un grup de pe Instagram au pus o poză cu mine și râd de ea.', at: now - 180 * min },

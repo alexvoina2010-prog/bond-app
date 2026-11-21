@@ -1,8 +1,9 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Composer, CrisisSheet, useFresh, useScrollEnd } from '../../../components/ui';
-import { ME, time, uid, update, useDemo } from '../../../lib/store';
+import { Composer, CrisisSheet, Empty, useFresh, useScrollEnd } from '@/components/bond';
+import { Button } from '@/components/ui/button';
+import { ME, time, uid, update, useDemo } from '@/lib/store';
 
 export default function Circle() {
   const s = useDemo();
@@ -41,6 +42,7 @@ export default function Circle() {
         <p className="notice">Aici ești <b>{s.myAlias}</b>. Ceilalți elevi nu văd cine ești. Psihologul află doar dacă ești în pericol. Mesajele cu jigniri nu pleacă.</p>
       </div>
       <section className="chat" aria-label="Mesajele din Cerc">
+        {s.circle.length === 0 && <Empty ink="circle">Nimeni n-a scris încă. Poți fi primul sau prima.</Empty>}
         <ol className="thread" aria-live="polite" style={{ gap: 0 }}>
           {s.circle.map((m) => (
             <li key={m.id} className={fresh(m.id) ? 'circle-msg arrive' : 'circle-msg'}>
@@ -54,7 +56,7 @@ export default function Circle() {
                 <>
                   <p>{m.text}</p>
                   {m.alias !== s.myAlias && (
-                    <button className="link-btn" onClick={() => report(m.id)} aria-label={`Raportează mesajul lui ${m.alias}`}>Raportează</button>
+                    <Button variant="link" className="justify-self-start" onClick={() => report(m.id)} aria-label={`Raportează mesajul lui ${m.alias}`}>Raportează</Button>
                   )}
                 </>
               )}
@@ -65,7 +67,7 @@ export default function Circle() {
         {held && <p className="ok-note" role="status">{held}</p>}
         <Composer label="Scrie în Cerc…" onSend={send} />
       </section>
-      <CrisisSheet open={crisis} online={s.psyOnline} onClose={() => setCrisis(false)} onTalk={() => router.push('/elev/psiholog')} />
+      <CrisisSheet open={crisis} onClose={() => setCrisis(false)} onTalk={() => router.push('/elev/psiholog')} />
     </>
   );
 }

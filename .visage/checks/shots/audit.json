@@ -1,0 +1,22 @@
+[
+ {
+  "route": "/elev/psiholog/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "/psiholog/conversatii/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ }
+]

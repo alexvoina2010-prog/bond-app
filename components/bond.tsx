@@ -1,7 +1,11 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { checkMessage } from '../lib/filter.mjs';
-import { time, type Msg } from '../lib/store';
+import { checkMessage } from '@/lib/filter.mjs';
+import { time, type Msg } from '@/lib/store';
+import { Ink, type InkName } from '@/components/ink';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 
 /** Ids present on first render are "at rest"; anything added later is new and plays its arrival. */
 export function useFresh(ids: string[]) {
@@ -22,15 +26,11 @@ export function useScrollEnd(count: number) {
   return end;
 }
 
-/** The signature: lit only when a real person is online (DESIGN.md, Signature). */
-export function Lamp({ on, size = 14 }: { on: boolean; size?: number }) {
-  return <span className={on ? 'lamp lamp-on' : 'lamp'} style={{ width: size, height: size }} aria-hidden="true" />;
-}
-
+/** Presence is a plain status line (precise layer): a dot plus words, never colour alone. */
 export function Presence({ on }: { on: boolean }) {
   return (
     <p className="presence">
-      <Lamp on={on} />
+      <span className="presence-dot" data-on={on || undefined} aria-hidden="true" />
       <span key={String(on)} className="swap-in">{on ? 'Psihologul școlii e aici acum' : 'Psihologul nu e online. Îți răspunde în program, L–V 8–16.'}</span>
     </p>
   );
@@ -40,34 +40,43 @@ export function DemoTag() {
   return <span className="demo-tag">date demo</span>;
 }
 
-/** Crisis sheet: helplines first, then the psychologist. Shown when a message matches a crisis phrase. */
-export function CrisisSheet({ open, online, onClose, onTalk }: { open: boolean; online: boolean; onClose: () => void; onTalk?: () => void }) {
-  const ref = useRef<HTMLDialogElement>(null);
-  useEffect(() => {
-    const d = ref.current;
-    if (!d) return;
-    if (open && !d.open) d.showModal();
-    if (!open && d.open) d.close();
-  }, [open]);
+/** An empty state: a small drawing, one line of what will appear here. */
+export function Empty({ ink, children }: { ink: InkName; children: React.ReactNode }) {
   return (
-    <dialog ref={ref} className="sheet" onClose={onClose} aria-labelledby="crisis-title">
-      {/* Unlit when the psychologist is offline; the outline still breathes as the guide. */}
-      <div className="breathe" aria-hidden="true"><Lamp on={online} size={56} /></div>
-      {/* Focus starts on the heading, never on a call button: a stray Enter must not dial. */}
-      <h2 id="crisis-title" tabIndex={-1} autoFocus className="focus-target">Ce ai scris contează. Nu ești singur sau singură cu asta.</h2>
-      <p>Psihologul școlii a fost anunțat și îți scrie cât de repede poate.</p>
-      <ul className="lines">
-        {/* Numbers checked 2026-11-20: 116 111 Telefonul Copilului, free, daily 8–20; 119 child-abuse line, 24/7. Re-verify before any real launch. */}
-        <li><a className="btn btn-danger" href="tel:112">Ești în pericol acum? Sună la 112</a></li>
-        <li><a className="btn btn-secondary" href="tel:116111">Telefonul Copilului: 116 111 (gratuit, zilnic 8–20)</a></li>
-        <li><a className="btn btn-secondary" href="tel:119">Semnalează un abuz: 119 (non-stop)</a></li>
-      </ul>
-      <p className="muted small">Respiră odată cu {online ? 'lumina' : 'cercul'} de sus: inspiră cât crește, expiră cât scade.</p>
-      <div className="row">
-        {onTalk && <button className="btn btn-secondary" onClick={onTalk}>Scrie-i psihologului</button>}
-        <button className="btn btn-ghost" onClick={onClose}>Închide</button>
-      </div>
-    </dialog>
+    <div className="empty">
+      <Ink name={ink} width={150} />
+      <p className="muted">{children}</p>
+    </div>
+  );
+}
+
+/** Crisis sheet: helplines first, then the psychologist. Shown when a message matches a crisis phrase. */
+export function CrisisSheet({ open, onClose, onTalk }: { open: boolean; onClose: () => void; onTalk?: () => void }) {
+  const title = useRef<HTMLHeadingElement>(null);
+  return (
+    <Dialog open={open} onOpenChange={(o) => { if (!o) onClose(); }}>
+      <DialogContent
+        // Focus starts on the heading, never on a call button: a stray Enter must not dial.
+        onOpenAutoFocus={(e) => { e.preventDefault(); title.current?.focus(); }}
+        // Back to the field the student was writing in.
+        onCloseAutoFocus={(e) => { e.preventDefault(); document.getElementById('msg')?.focus(); }}
+      >
+        <div className="breathe" aria-hidden="true"><Ink name="breath" width={150} /></div>
+        <DialogTitle ref={title} tabIndex={-1} className="focus-target text-[length:var(--text-h2)] font-normal">Ce ai scris contează. Nu trebuie să treci singur sau singură prin asta.</DialogTitle>
+        <DialogDescription>Psihologul școlii a primit un semnal și îți scrie cât de repede poate.</DialogDescription>
+        <ul className="lines">
+          {/* Numbers checked 2026-11-20: 116 111 Telefonul Copilului, free, daily 8–20; 119 child-abuse line, 24/7. Re-verify before any real launch. */}
+          <li><Button asChild variant="destructive" size="block"><a href="tel:112">Ești în pericol acum? Sună la 112</a></Button></li>
+          <li><Button asChild variant="secondary" size="block"><a href="tel:116111">Telefonul Copilului: 116 111 (gratuit, zilnic 8–20)</a></Button></li>
+          <li><Button asChild variant="secondary" size="block"><a href="tel:119">Semnalează un abuz: 119 (non-stop)</a></Button></li>
+        </ul>
+        <p className="muted small">Respiră odată cu cercul de sus: inspiră cât crește, expiră cât scade.</p>
+        <div className="row">
+          {onTalk && <Button variant="secondary" onClick={onTalk}>Scrie-i psihologului</Button>}
+          <Button variant="ghost" onClick={onClose}>Închide</Button>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }
 
@@ -96,14 +105,14 @@ export function Composer({ onSend, label }: { onSend: (text: string, crisis: boo
   return (
     <form className="composer" onSubmit={submit}>
       <label htmlFor="msg" className="sr-only">{label}</label>
-      <textarea
+      <Textarea
         ref={field}
         id="msg" rows={2} value={text} maxLength={1000} placeholder={label}
         aria-invalid={!!error} aria-describedby={error ? 'msg-err' : undefined}
         onChange={(e) => { setText(e.target.value); if (error) setError(''); }}
         onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submit(e); } }}
       />
-      <button className="btn" type="submit" disabled={!text.trim()}>Trimite</button>
+      <Button type="submit" disabled={!text.trim()}>Trimite</Button>
       {error && <p id="msg-err" className="error" role="alert">{error}</p>}
     </form>
   );

@@ -1,6 +1,6 @@
 'use client';
-import { DemoTag } from '../../../components/ui';
-import { useDemo } from '../../../lib/store';
+import { DemoTag } from '@/components/bond';
+import { useDemo } from '@/lib/store';
 
 export default function Resources() {
   const s = useDemo();

@@ -1,37 +1,41 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { Lamp } from '../components/ui';
-import { resetDemo, useDemo, useMounted } from '../lib/store';
+import { Ink } from '@/components/ink';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { resetDemo } from '@/lib/store';
 
 export default function Entry() {
   const router = useRouter();
-  const mounted = useMounted();
-  const s = useDemo();
   return (
     <>
       <main className="entry">
-        <p className="wordmark"><Lamp on={mounted && s.psyOnline} size={16} />bond</p>
+        <div className="ink-head">
+          <p className="wordmark wordmark-lg">bond</p>
+          <Ink name="note" width={220} draw />
+        </div>
         <div className="stack">
-          <h1>Un loc sigur în care vorbești despre ce se întâmplă la școală.</h1>
+          <h1>Un loc sigur în care spui ce se întâmplă la școală.</h1>
           <p className="muted">Scrii psihologului școlii sau vorbești anonim cu alți elevi care au trecut prin același lucru.</p>
         </div>
         <form className="stack" onSubmit={(e) => { e.preventDefault(); router.push('/elev'); }}>
           <div>
-            <label htmlFor="code">Codul școlii</label>
-            <input id="code" defaultValue="CLJ-DEMO" autoComplete="off" />
+            <Label htmlFor="code">Codul școlii</Label>
+            <Input id="code" defaultValue="CLJ-DEMO" autoComplete="off" />
           </div>
           <div>
-            <label htmlFor="email">Emailul de la școală</label>
-            <input id="email" type="email" defaultValue="elev.demo@scoala-demo.ro" autoComplete="off" />
+            <Label htmlFor="email">Emailul de la școală</Label>
+            <Input id="email" type="email" defaultValue="elev.demo@scoala-demo.ro" autoComplete="off" />
           </div>
           <p className="muted small">Demo: datele sunt fictive și nu pleacă nicăieri. Doar psihologul ar vedea cine ești.</p>
-          <button className="btn" type="submit">Intră ca elev</button>
-          <button className="btn btn-secondary" type="button" onClick={() => router.push('/psiholog')}>Intră ca psiholog</button>
+          <Button type="submit">Intră ca elev</Button>
+          <Button variant="secondary" type="button" onClick={() => router.push('/psiholog')}>Intră ca psiholog</Button>
         </form>
-        <p className="small muted">
-          Pentru prezentare: deschide elevul și psihologul în două ferestre alăturate.{' '}
-          <button className="link-btn" type="button" onClick={resetDemo}>Resetează datele demo</button>
-        </p>
+        <div className="stack-tight justify-items-start">
+          <p className="small muted">Pentru prezentare: deschide elevul și psihologul în două ferestre alăturate.</p>
+          <Button variant="link" type="button" onClick={resetDemo}>Resetează datele demo</Button>
+        </div>
       </main>
       <footer className="made">bond · made by ttaavo</footer>
     </>

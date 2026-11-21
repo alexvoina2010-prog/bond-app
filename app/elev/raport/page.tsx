@@ -1,14 +1,17 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { Lamp } from '../../../components/ui';
-import { KINDS, uid, update, useDemo } from '../../../lib/store';
+import { Ink } from '@/components/ink';
+import { Button } from '@/components/ui/button';
+import { CheckRow, RadioGroup, RadioRow } from '@/components/ui/choice';
+import { NativeSelect, Textarea } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { KINDS, uid, update } from '@/lib/store';
 
 const PLACES = ['În clasă', 'Pe hol', 'În curte', 'La toaletă', 'Pe drum spre școală', 'Online'];
 const WHEN = ['Azi', 'Ieri', 'Săptămâna asta', 'Mai demult'];
 
 export default function Report() {
-  const s = useDemo();
   const [done, setDone] = useState(false);
   const thanks = useRef<HTMLHeadingElement>(null);
   // Move focus to the thank-you heading so screen readers announce that the report was sent.
@@ -28,11 +31,11 @@ export default function Report() {
 
   if (done) {
     return (
-      <div className="stack done">
-        <Lamp on={s.psyOnline} size={40} />
+      <div className="moment">
+        <Ink name="door" width={210} draw />
         <h1 ref={thanks} tabIndex={-1} className="focus-target">Mulțumim că ai spus.</h1>
         <p className="muted">Psihologul școlii a primit raportul. Ce ai văzut poate schimba ceva pentru cineva.</p>
-        <Link className="btn" href="/elev">Înapoi acasă</Link>
+        <Button asChild><Link href="/elev">Înapoi acasă</Link></Button>
       </div>
     );
   }
@@ -46,26 +49,26 @@ export default function Report() {
       <form className="stack" onSubmit={submit}>
         <fieldset>
           <legend>Ce s-a întâmplat?</legend>
-          {KINDS.map((k, i) => (
-            <label key={k} className="choice"><input type="radio" name="kind" value={k} required defaultChecked={i === 0} />{k}</label>
-          ))}
+          <RadioGroup name="kind" required defaultValue={KINDS[0]}>
+            {KINDS.map((k, i) => <RadioRow key={k} id={`kind-${i}`} value={k}>{k}</RadioRow>)}
+          </RadioGroup>
         </fieldset>
         <div className="two">
           <div>
-            <label htmlFor="place">Unde?</label>
-            <select id="place" name="place">{PLACES.map((p) => <option key={p}>{p}</option>)}</select>
+            <Label htmlFor="place">Unde?</Label>
+            <NativeSelect id="place" name="place">{PLACES.map((p) => <option key={p}>{p}</option>)}</NativeSelect>
           </div>
           <div>
-            <label htmlFor="when">Când?</label>
-            <select id="when" name="when">{WHEN.map((w) => <option key={w}>{w}</option>)}</select>
+            <Label htmlFor="when">Când?</Label>
+            <NativeSelect id="when" name="when">{WHEN.map((w) => <option key={w}>{w}</option>)}</NativeSelect>
           </div>
         </div>
         <div>
-          <label htmlFor="text">Câteva cuvinte despre ce ai văzut (opțional)</label>
-          <textarea id="text" name="text" rows={4} maxLength={1000} placeholder="Nu e nevoie de nume. Spune doar ce ai văzut." />
+          <Label htmlFor="text">Câteva cuvinte despre ce ai văzut (opțional)</Label>
+          <Textarea id="text" name="text" rows={4} maxLength={1000} placeholder="Nu e nevoie de nume. Spune doar ce ai văzut." />
         </div>
-        <label className="choice"><input type="checkbox" name="anon" defaultChecked />Trimite anonim (nici psihologul nu vede cine ești)</label>
-        <button className="btn" type="submit">Trimite raportul</button>
+        <CheckRow id="anon" name="anon" defaultChecked>Trimite anonim (nici psihologul nu vede cine ești)</CheckRow>
+        <Button type="submit">Trimite raportul</Button>
       </form>
     </>
   );

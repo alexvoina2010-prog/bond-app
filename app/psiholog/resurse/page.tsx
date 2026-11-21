@@ -1,6 +1,9 @@
 'use client';
 import { useState } from 'react';
-import { uid, update, useDemo } from '../../../lib/store';
+import { Button } from '@/components/ui/button';
+import { Input, Textarea } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { uid, update, useDemo } from '@/lib/store';
 
 export default function PsyResources() {
   const s = useDemo();
@@ -15,7 +18,7 @@ export default function PsyResources() {
     if (!title || !body) return;
     update((d) => { d.articles.unshift({ id: uid(), title, body, minutes: Math.max(1, Math.round(body.split(/\s+/).length / 200)) }); });
     form.reset();
-    setSaved(`„${title}" e publicat pentru elevi.`);
+    setSaved(`„${title}” e publicat pentru elevi.`);
   }
 
   return (
@@ -24,9 +27,9 @@ export default function PsyResources() {
       <div className="two" style={{ alignItems: 'start' }}>
         <form className="panel" onSubmit={add}>
           <h2 className="h-sm">Scrie o resursă nouă</h2>
-          <div><label htmlFor="title">Titlu</label><input id="title" name="title" required maxLength={80} /></div>
-          <div><label htmlFor="body">Text</label><textarea id="body" name="body" rows={6} required maxLength={4000} /></div>
-          <button className="btn" type="submit">Publică pentru elevi</button>
+          <div><Label htmlFor="title">Titlu</Label><Input id="title" name="title" required maxLength={80} /></div>
+          <div><Label htmlFor="body">Text</Label><Textarea id="body" name="body" rows={6} required maxLength={4000} /></div>
+          <Button type="submit">Publică pentru elevi</Button>
           {saved && <p className="ok-note" role="status">{saved}</p>}
         </form>
         <section className="panel" aria-labelledby="pub">

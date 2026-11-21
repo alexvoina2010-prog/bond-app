@@ -1,8 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Lamp } from '../../components/ui';
-import { useDemo, useMounted } from '../../lib/store';
+import { useMounted } from '@/lib/store';
 
 const TABS = [
   { href: '/elev', label: 'Acasă', icon: <path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z" /> },
@@ -14,14 +13,11 @@ const TABS = [
 export default function StudentLayout({ children }: { children: React.ReactNode }) {
   const path = usePathname().replace(/\/$/, '') || '/'; // trailingSlash export: '/elev/' must match '/elev'
   const mounted = useMounted();
-  const s = useDemo();
   const active = TABS.findIndex((t) => t.href === path);
   return (
     <div className="student">
       <header className="topbar">
-        <Link href="/elev" className="wordmark wordmark-sm">
-          <Lamp on={mounted && s.psyOnline} size={12} />bond
-        </Link>
+        <Link href="/elev" className="wordmark">bond</Link>
         <Link href="/" className="exit">Ieși</Link>
       </header>
       <main>{mounted ? children : null}</main>

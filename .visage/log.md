@@ -60,3 +60,46 @@
   - the motion itself (timing and feel): the browser pane was hidden, so animations were frozen;
   - reduced motion live (rule is global and !important);
   - Safari, where the ::details-content expander and @starting-style exit may fall back to instant.
+
+## 2026-11-21 · build (clickable rung) · v2 rerun with Visage 1.1, all demo screens
+- Folder: `bond-app-v2` (copied from `bond-app`, which is untouched), port 3101. Entries above this one are v1 history.
+- Lead: visage (screens hand-built on shadcn/ui primitives; impeccable not invoked as a skill, same shortcut as v1) · reviewers: independent direction reviewer (brief + cards only), impeccable-finish-reviewer (1 round, 8 fixes).
+- Asked Alex:
+  - scope → full rerun from D0;
+  - D0 → Roshan's spot illustration + Yashi Singh's oil-pastel brand (via Designeer; terms checked 2026-11-21);
+  - D1 → A "Linie de cerneală", against the reviewer's and Visage's pick of C "Bilet împăturit";
+  - D2 → illustration system, drawn (Claude-authored SVG);
+  - D3 → unchanged from v1;
+  - D5 → new packages, pinned set approved: tailwindcss and @tailwindcss/postcss 4.3.5, radix-ui 1.8.1, class-variance-authority 0.7.1, clsx 2.1.1, tailwind-merge 3.7.0, tw-animate-css 1.4.0; no shadcn CLI, no lucide-react.
+- scan-before-install: skillspector failed to connect, so the check was npm metadata only (licences MIT/ISC/Apache-2.0, no install scripts, every version at least 2 weeks old). Verdict: install with caution.
+- Decided alone:
+  - shadcn source copied by hand into components/ui and restyled;
+  - `--primary` mapped to ink, not lilac (lilac is illustration-only);
+  - presence became a plain dot plus words (the lamp is gone);
+  - drawings only on entry, home header, booking confirmed, report sent, crisis sheet and empty states, never on Cercul or working views;
+  - the breath patch is the crisis breathing guide;
+  - Fraunces 300 only at 32 px and above;
+  - the `sm` button is 40 px only at 860 px and wider;
+  - logic, store, filter and flows reused from v1 unchanged, except the seed greeting text and the storage key (`bond-demo-v2`).
+- Finish review fixes applied (7 of 8):
+  - greeting no longer promises secrecy ("Ce îmi scrii aici citesc doar eu. Dacă ești în pericol, căutăm ajutor împreună.");
+  - sidebar side-stripe removed;
+  - Romanian closing quotes (5 places);
+  - Conversații composer pinned to the bottom of the pane;
+  - entry reset link on its own line;
+  - ink wobble 2.2 → 1.4 with a larger filter region (no broken strokes);
+  - chart bars scaled to max(5, largest).
+- Not applied: #3, server-render page content. It is the same client-only store as v1; the gating stays until Supabase replaces localStorage at the MVP rung (`shortcut:` in lib/store.ts).
+- Floor: `checks/build.md` (v2). 88 route captures at 390/768/1280/1440 in light and dark, plus 8 state captures; DOM audit 0 issues; tests 3/3; build passes.
+- Flows clicked live: booking, report, crisis sheet (focus on the heading, Escape, focus back to the field), filter, Cercul report → Panou alert, availability switch. No console errors.
+- Not checked:
+  - motion timing and feel live (captures use reduced motion; the pane freezes animations);
+  - screen reader;
+  - Safari/iOS;
+  - throttled LCP/INP (first-route JS measured: 187.6 KB gz, v1 176.9 KB);
+  - no re-review by the finish reviewer after the fixes (verified by recapture and audit);
+  - the 116 111 / 119 numbers were not re-verified (last checked 2026-11-20).
+- Next: Alex compares v1 (:3100) and v2 (:3101) and picks one for the 26 Nov demo; deploy only with his OK (D6).
+
+## 2026-11-21 · decision
+- Alex: **v2 stays** as the bond demo version (Linie de cerneală). v1 in `../bond-app` is kept as history. Deploy still needs his OK (D6).

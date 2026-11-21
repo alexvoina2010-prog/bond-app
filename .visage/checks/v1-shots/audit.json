@@ -1,0 +1,442 @@
+[
+ {
+  "route": "/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/psiholog/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/cercul/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/raport/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/resurse/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/conversatii/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/programari/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/rapoarte/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/resurse/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/psiholog/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/cercul/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/raport/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/resurse/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/conversatii/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/programari/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/rapoarte/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/resurse/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/psiholog/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/cercul/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/raport/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/resurse/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/conversatii/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/programari/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/rapoarte/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/resurse/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/psiholog/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/cercul/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/raport/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/elev/resurse/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/conversatii/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/programari/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/rapoarte/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "/psiholog/resurse/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ }
+]

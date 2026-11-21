@@ -1,7 +1,9 @@
 'use client';
 import Link from 'next/link';
-import { DemoTag, useFresh } from '../../components/ui';
-import { KINDS, time, update, useDemo } from '../../lib/store';
+import { DemoTag, Empty, useFresh } from '@/components/bond';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { KINDS, time, update, useDemo } from '@/lib/store';
 
 export default function Dashboard() {
   const s = useDemo();
@@ -9,7 +11,7 @@ export default function Dashboard() {
   const fresh = useFresh(s.alerts.map((a) => a.id));
   const crises = s.alerts.filter((a) => a.kind === 'criza').length;
   const byKind = KINDS.map((k) => [k, s.reports.filter((r) => r.kind === k).length] as const);
-  const max = Math.max(1, ...byKind.map(([, n]) => n));
+  const max = Math.max(5, ...byKind.map(([, n]) => n)); // a floor of 5, so one report never draws a full bar
 
   return (
     <>
@@ -21,22 +23,22 @@ export default function Dashboard() {
       <section className="panel" aria-labelledby="al">
         <h2 id="al" className="h-sm">Alerte</h2>
         {open.length === 0 ? (
-          <p className="muted">Nicio alertă nouă. Când un elev scrie ceva îngrijorător sau un mesaj e raportat, apare aici.</p>
+          <Empty ink="cup">Nicio alertă nouă. Când un elev scrie ceva îngrijorător sau un mesaj e raportat, apare aici.</Empty>
         ) : (
           <ul className="items">
             {open.map((a) => (
               <li key={a.id} className={fresh(a.id) ? (a.kind === 'criza' ? 'arrive ring' : 'arrive') : undefined}>
                 <div className="item-head">
                   <span className="row" style={{ gap: 8 }}>
-                    <span className={a.kind === 'criza' ? 'pill danger' : 'pill'}>{a.kind === 'criza' ? 'Posibil pericol' : 'Mesaj raportat'}</span>
+                    <Badge variant={a.kind === 'criza' ? 'danger' : 'outline'}>{a.kind === 'criza' ? 'Posibil pericol' : 'Mesaj raportat'}</Badge>
                     <b>{a.who}</b><span className="muted small">· {a.where}</span>
                   </span>
                   <span className="muted small">{time(a.at)}</span>
                 </div>
-                <p>„{a.text}"</p>
+                <p>„{a.text}”</p>
                 <div className="row">
-                  {a.kind === 'criza' && <Link className="btn btn-sm btn-secondary" href="/psiholog/conversatii">Scrie-i elevului</Link>}
-                  <button className="btn btn-sm btn-secondary" onClick={() => update((d) => { d.alerts.find((x) => x.id === a.id)!.seen = true; })}>Am preluat</button>
+                  {a.kind === 'criza' && <Button asChild variant="secondary" size="sm"><Link href="/psiholog/conversatii">Scrie-i elevului</Link></Button>}
+                  <Button variant="secondary" size="sm" onClick={() => update((d) => { d.alerts.find((x) => x.id === a.id)!.seen = true; })}>Am preluat</Button>
                 </div>
               </li>
             ))}
@@ -48,7 +50,7 @@ export default function Dashboard() {
         <h2 id="st" className="h-sm">Școala, pe scurt</h2>
         <div className="tiles">
           <div className={crises ? 'tile hot' : 'tile'}><b>{crises}</b><span className="muted small">alerte de pericol</span></div>
-          <div className="tile"><b>{s.reports.length}</b><span className="muted small">rapoarte „Am văzut ceva"</span></div>
+          <div className="tile"><b>{s.reports.length}</b><span className="muted small">rapoarte „Am văzut ceva”</span></div>
           <div className="tile"><b>{s.circle.length}</b><span className="muted small">mesaje în Cerc</span></div>
           <div className="tile"><b>{s.bookings.length}</b><span className="muted small">programări</span></div>
         </div>

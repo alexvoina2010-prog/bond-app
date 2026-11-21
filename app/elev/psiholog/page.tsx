@@ -1,7 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { Composer, CrisisSheet, Presence, Thread } from '../../../components/ui';
-import { ME, SLOTS, uid, update, useDemo } from '../../../lib/store';
+import { Composer, CrisisSheet, Presence, Thread } from '@/components/bond';
+import { Ink } from '@/components/ink';
+import { Button } from '@/components/ui/button';
+import { RadioGroup, RadioRow } from '@/components/ui/choice';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { ME, SLOTS, uid, update, useDemo } from '@/lib/store';
 
 export default function StudentPsy() {
   const s = useDemo();
@@ -39,29 +44,33 @@ export default function StudentPsy() {
       <section className="panel" aria-labelledby="b-title">
         <h2 id="b-title" className="h-sm">Discuție față în față</h2>
         {mine ? (
-          <p role="status">{mine.slot}, la cabinet · <b>{mine.status === 'confirmată' ? 'confirmată' : 'așteaptă confirmarea'}</b></p>
+          <div className="moment">
+            <Ink name="chairs" width={150} draw />
+            <p role="status">{mine.slot}, la cabinet · <b>{mine.status === 'confirmată' ? 'confirmată' : 'așteaptă confirmarea'}</b></p>
+          </div>
         ) : booking ? (
           <form className="stack" onSubmit={book}>
             <fieldset>
               <legend>Alege o oră</legend>
-              {SLOTS.map((slot) => (
-                <label key={slot} className="choice">
-                  <input type="radio" name="slot" value={slot} required disabled={taken.has(slot)} />
-                  {slot}{taken.has(slot) && <span className="muted small"> · ocupat</span>}
-                </label>
-              ))}
+              <RadioGroup name="slot" required>
+                {SLOTS.map((slot, i) => (
+                  <RadioRow key={slot} id={`slot-${i}`} value={slot} disabled={taken.has(slot)}>
+                    {slot}{taken.has(slot) && <span className="muted small"> · ocupat</span>}
+                  </RadioRow>
+                ))}
+              </RadioGroup>
             </fieldset>
             <div>
-              <label htmlFor="note">Vrei să-i spui ceva înainte? (opțional)</label>
-              <input id="note" name="note" maxLength={200} />
+              <Label htmlFor="note">Vrei să-i spui ceva înainte? (opțional)</Label>
+              <Input id="note" name="note" maxLength={200} />
             </div>
             <div className="row">
-              <button className="btn" type="submit">Cere programarea</button>
-              <button className="btn btn-ghost" type="button" onClick={() => setBooking(false)}>Renunță</button>
+              <Button type="submit">Cere programarea</Button>
+              <Button variant="ghost" type="button" onClick={() => setBooking(false)}>Renunță</Button>
             </div>
           </form>
         ) : (
-          <button className="btn btn-secondary" onClick={() => setBooking(true)}>Programează-te la cabinet</button>
+          <Button variant="secondary" onClick={() => setBooking(true)}>Programează-te la cabinet</Button>
         )}
       </section>
 
@@ -69,7 +78,7 @@ export default function StudentPsy() {
         <Thread msgs={thread.msgs} me="elev" />
         <Composer label="Scrie-i psihologului…" onSend={send} />
       </section>
-      <CrisisSheet open={crisis} online={s.psyOnline} onClose={() => setCrisis(false)} />
+      <CrisisSheet open={crisis} onClose={() => setCrisis(false)} />
     </>
   );
 }

@@ -1,7 +1,9 @@
 'use client';
 import Link from 'next/link';
-import { Presence } from '../../components/ui';
-import { useDemo } from '../../lib/store';
+import { Presence } from '@/components/bond';
+import { Ink } from '@/components/ink';
+import { Button } from '@/components/ui/button';
+import { useDemo } from '@/lib/store';
 
 const DOORS = [
   { href: '/elev/cercul', title: 'Intră în Cerc', text: 'Vorbești anonim cu alți elevi care au trecut prin asta.' },
@@ -13,11 +15,12 @@ export default function StudentHome() {
   return (
     <>
       <div className="stack">
+        <Ink name="note" width={190} draw />
         <h1>Aici te ascultă cineva.</h1>
         <Presence on={s.psyOnline} />
       </div>
       <div className="stack-tight">
-        <Link className="btn btn-block" href="/elev/psiholog">Vorbește cu psihologul</Link>
+        <Button asChild size="block"><Link href="/elev/psiholog">Vorbește cu psihologul</Link></Button>
         <p className="muted small">Doar psihologul școlii vede cine ești.</p>
       </div>
       <ul className="doors">

@@ -3,109 +3,167 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>bond: three directions</title>
+<title>bond v2 directions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Figtree:wght@400;600&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=DM+Sans:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap&subset=latin-ext" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Figtree:wght@400;600&family=Archivo:wdth,wght@62..125,400..800&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  *{box-sizing:border-box;margin:0}
-  body{font-family:system-ui,sans-serif;background:#e9e9e9;color:#111;padding:24px 16px 48px}
-  .meta{max-width:1200px;margin:0 auto 16px;font-size:14px;color:#444}
-  .grid{display:grid;gap:20px;max-width:1200px;margin:0 auto;grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
-  .card{border-radius:6px;overflow:hidden;min-height:620px;display:flex;flex-direction:column;padding:28px 24px;gap:18px;position:relative}
-  .tag{font-size:12px;opacity:.7}
-  label{display:block;font-size:13px;margin-bottom:6px}
-  input{width:100%;font:inherit;padding:12px 14px}
-  button{font:inherit;cursor:pointer}
-  .demo{font-size:11px;opacity:.65}
+  :root { --page:#ececee; --label:#3f3f46; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--page); font:14px/1.45 system-ui, sans-serif; color:#111; }
+  header { padding:20px 24px 8px; }
+  header h1 { font-size:15px; margin:0; font-weight:600; }
+  header p { margin:4px 0 0; color:var(--label); }
+  .grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; padding:16px 24px 28px; }
+  @media (max-width: 1000px) { .grid { grid-template-columns:1fr; } }
+  .tag { font-size:12px; color:var(--label); margin:0 0 6px; }
+  .card { border-radius:18px; overflow:hidden; min-height:640px; display:flex; flex-direction:column; }
+  .meta { padding:14px 18px 16px; font-size:12.5px; border-top:1px solid; }
+  .meta b { font-weight:600; }
+  .sw { display:inline-block; width:14px; height:14px; border-radius:4px; vertical-align:-3px; margin-right:4px; border:1px solid rgba(0,0,0,.15); }
 
-  /* 1 Caiet */
-  .c1{background:#FBFAF7;color:#161616;font-family:Figtree,sans-serif;
-      background-image:linear-gradient(90deg,transparent 38px,#e9b8b8 38px,#e9b8b8 39px,transparent 39px),repeating-linear-gradient(#FBFAF7 0 31px,#e6e9f0 31px 32px)}
-  .c1 h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:46px;line-height:1.05;letter-spacing:-.5px}
-  .c1 .hl{background:linear-gradient(transparent 55%,#C8B6F2 55%,#C8B6F2 92%,transparent 92%);padding:0 2px}
-  .c1 .btn{background:#161616;color:#fff;border:0;border-radius:10px;padding:14px 18px;font-weight:600}
-  .c1 .btn:focus-visible,.c1 input:focus-visible{outline:3px solid #5A3E9E;outline-offset:2px}
-  .c1 input{border:1px solid #cfcac0;border-radius:10px;background:#fff}
-  .c1 .msg{background:#fff;border:1px solid #e3ded4;border-radius:10px;padding:14px}
-  .c1 a{color:#5A3E9E}
+  /* A — Linie de cerneală */
+  .a { background:#fff; color:#141414; font-family:Figtree, sans-serif; }
+  .a .meta { border-color:#e6e6ea; color:#55555c; }
+  .a .hero { padding:22px 26px 10px; flex:1; display:flex; flex-direction:column; gap:14px; }
+  .a .art { height:190px; display:flex; justify-content:center; }
+  .a h2 { font-family:Fraunces, serif; font-weight:300; font-variation-settings:"opsz" 144; font-size:40px; line-height:1.04; margin:0; letter-spacing:-.01em; }
+  .a p { margin:0; color:#55555c; font-size:15px; }
+  .a .btn { background:#141414; color:#fff; border:0; border-radius:14px; height:50px; font:600 15px Figtree, sans-serif; width:100%; }
+  .a .field { border:1.5px solid #8a8a93; border-radius:12px; height:48px; display:flex; align-items:center; padding:0 14px; color:#6b6b73; }
+  .a .row { display:flex; align-items:center; justify-content:space-between; border-top:1px solid #e6e6ea; padding:12px 0 0; font-weight:600; }
+  .a .row small { font-weight:400; color:#55555c; display:block; }
 
-  /* 2 Lampa */
-  .c2{background:#0F0F10;color:#F4F4F5;font-family:"DM Sans",sans-serif}
-  .c2 h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:500;font-size:44px;line-height:1.05;letter-spacing:-1px}
-  .c2 .lamp{width:22px;height:22px;border-radius:50%;background:#B9A4F5;box-shadow:0 0 28px 10px rgba(185,164,245,.35);animation:breathe 5s ease-in-out infinite}
-  @keyframes breathe{0%,100%{transform:scale(.85);opacity:.75}50%{transform:scale(1.15);opacity:1}}
-  @media (prefers-reduced-motion:reduce){.c2 .lamp{animation:none}}
-  .c2 .btn{background:#F4F4F5;color:#0F0F10;border:0;border-radius:16px;padding:14px 18px;font-weight:600}
-  .c2 .btn:focus-visible,.c2 input:focus-visible{outline:3px solid #B9A4F5;outline-offset:2px}
-  .c2 input{background:#18181a;color:#F4F4F5;border:1px solid #333;border-radius:16px}
-  .c2 .msg{background:#18181a;border:1px solid #2a2a2d;border-radius:16px;padding:14px}
-  .c2 .day{background:#fff;color:#111;border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:12px;font-size:14px}
-  .c2 .day .lamp{box-shadow:0 0 16px 4px rgba(185,164,245,.45);width:16px;height:16px}
+  /* B — Pastel pe hârtie */
+  .b { background:#fff; color:#0e0e0e; font-family:Archivo, sans-serif; }
+  .b .meta { border-color:#e4e4e7; color:#52525b; }
+  .b .band { height:210px; position:relative; overflow:hidden; background:#fbfaf7; }
+  .b .hero { padding:18px 24px 12px; flex:1; display:flex; flex-direction:column; gap:12px; }
+  .b h2 { font-weight:800; font-stretch:125%; font-size:36px; line-height:.98; margin:0; letter-spacing:-.015em; }
+  .b p { margin:0; color:#52525b; font-size:15px; }
+  .b .btn { background:#0e0e0e; color:#fff; border:0; border-radius:10px; height:50px; font:600 15px Archivo, sans-serif; width:100%; }
+  .b .field { border:1.5px solid #85858e; border-radius:8px; height:48px; display:flex; align-items:center; padding:0 14px; color:#6b6b73; }
+  .b .chip { display:inline-flex; gap:8px; align-items:center; font-size:13px; font-weight:600; }
 
-  /* 3 Abtibild */
-  .c3{background:#fff;color:#000;font-family:"DM Sans",sans-serif}
-  .c3 h2{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:48px;line-height:.98;letter-spacing:-1.5px}
-  .c3 .btn{background:#CDBBFF;color:#000;border:2px solid #000;border-radius:14px;padding:13px 18px;font-weight:600;box-shadow:4px 4px 0 #000}
-  .c3 .btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #000}
-  .c3 .btn:focus-visible,.c3 input:focus-visible{outline:3px solid #000;outline-offset:3px}
-  .c3 input{border:2px solid #000;border-radius:14px}
-  .c3 .msg{border:2px solid #000;border-radius:14px;padding:14px;box-shadow:4px 4px 0 #000}
-  .c3 .stk{position:absolute;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:15px;background:#CDBBFF;border:2px solid #000;border-radius:999px;padding:6px 12px;box-shadow:3px 3px 0 #000}
+  /* C — Bilet împăturit */
+  .c { background:#fff; color:#111; font-family:"Public Sans", sans-serif; }
+  .c .meta { border-color:#e4e4e7; color:#52525b; }
+  .c .hero { padding:22px 24px 12px; flex:1; display:flex; flex-direction:column; gap:14px; }
+  .c h2 { font-family:Newsreader, serif; font-weight:400; font-variation-settings:"opsz" 72; font-size:40px; line-height:1.05; margin:0; letter-spacing:-.01em; }
+  .c p { margin:0; color:#52525b; font-size:15px; }
+  .c .note { position:relative; padding:16px 18px 18px; }
+  .c .note svg.paper { position:absolute; inset:0; width:100%; height:100%; }
+  .c .note .to, .c .note .msg { position:relative; }
+  .c .note .to { font-size:12px; color:#52525b; }
+  .c .note .msg { font-family:Newsreader, serif; font-size:20px; line-height:1.3; margin-top:4px; padding-right:26px; }
+  .c .btn { background:#111; color:#fff; border:0; border-radius:6px; height:50px; font:600 15px "Public Sans", sans-serif; width:100%; }
+  .c .field { border:1.5px solid #85858e; border-radius:6px; height:48px; display:flex; align-items:center; padding:0 14px; color:#6b6b73; }
 </style>
 </head>
 <body>
-<p class="meta">bond: three directions for D1. Same content in each: headline, primary button, a field, a chat card, a first sketch of the signature. Sample data is marked "date demo".</p>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
-</svg>
+<header>
+  <h1>bond v2 — three directions (D1). Same team colours: lilac, white, black.</h1>
+  <p>Inspiration anchors: Roshan, spot illustration over calm UI · Yashi Singh, a hand-made layer framing a strict UI (via Designeer). v1 "Lampă de veghe" stays as the baseline at :3100.</p>
+</header>
 <div class="grid">
 
-  <section class="card c1" aria-label="Direcția 1, Caiet cu margine">
-    <p class="tag">1 · Caiet cu margine</p>
-    <svg viewBox="0 0 220 90" width="200" aria-hidden="true" style="margin-left:24px">
-      <g filter="url(#rough)" fill="none" stroke="#161616" stroke-width="2.2" stroke-linecap="round">
-        <path d="M30 45c0-20 22-30 42-22s26 30 8 40-38-2-38-18"/>
-        <path d="M78 45c0-20 22-30 42-22s26 30 8 40-38-2-38-18"/>
-        <path d="M160 60l40-30-14 40-8-14z" stroke-linejoin="round"/>
-        <path d="M150 72c-10 6-24 6-34 0" stroke-dasharray="3 6"/>
-      </g>
-    </svg>
-    <h2>Spune ce s-a întâmplat. <span class="hl">Cineva te ascultă.</span></h2>
-    <button class="btn">Vorbește cu psihologul</button>
-    <div><label for="f1">Codul școlii</label><input id="f1" value="CLJ-2024" aria-describedby="d1"><p id="d1" class="demo">date demo</p></div>
-    <div class="msg"><p style="font-size:13px;opacity:.7">Cercul · anonim</p><p>„Și mie mi s-a întâmplat. Ce ai făcut după?"</p><p class="demo">date demo</p></div>
-    <p style="font-size:14px">Ești în pericol? <a href="#">Sună la 112</a></p>
-  </section>
+<section>
+  <p class="tag">A · expected, made excellent</p>
+  <div class="card a">
+    <div class="hero">
+      <div class="art" aria-hidden="true">
+        <svg viewBox="0 0 300 190" width="300" height="190">
+          <defs><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2.2"/></filter></defs>
+          <ellipse cx="152" cy="96" rx="58" ry="40" fill="#C4B2F7" opacity=".85"/>
+          <g fill="none" stroke="#141414" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#rough)">
+            <path d="M18 150 C52 140 78 126 104 112 C116 106 126 104 134 108 C140 112 138 120 130 124 L112 132"/>
+            <path d="M104 112 C110 98 120 92 132 92"/>
+            <path d="M282 60 C252 68 226 82 202 96 C190 102 180 104 172 100 C166 96 168 88 176 84 L194 76"/>
+            <path d="M202 96 C196 110 186 116 174 116"/>
+            <path d="M138 84 L168 70 L182 100 L152 114 Z"/>
+            <path d="M146 88 L170 78 M150 96 L172 86 M154 104 L168 98"/>
+          </g>
+        </svg>
+      </div>
+      <h2>Spune-i cuiva. Nimeni altcineva nu vede.</h2>
+      <p>Psihologul școlii tale sau un cerc de colegi care trec prin același lucru.</p>
+      <button class="btn">Scrie-i psihologului</button>
+      <div class="field">Scrie ce s-a întâmplat…</div>
+      <div class="row"><span>Cercul<small>12 colegi online · anonim</small></span><span>›</span></div>
+    </div>
+    <div class="meta">
+      <b>Linie de cerneală</b> (Ink line) · gentle, clear, safe<br>
+      Fraunces 300 / Figtree · radius 14 · airy<br>
+      <span class="sw" style="background:#fff"></span><span class="sw" style="background:#141414"></span><span class="sw" style="background:#C4B2F7"></span><span class="sw" style="background:#5A3EA8"></span> ground · ink · tint · links<br>
+      Signature: one ink line, one flat lilac patch (drawn SVG) · anchor: Roshan
+    </div>
+  </div>
+</section>
 
-  <section class="card c2" aria-label="Direcția 2, Lampă de veghe">
-    <p class="tag">2 · Lampă de veghe</p>
-    <div style="display:flex;align-items:center;gap:14px;padding:8px 4px"><span class="lamp" aria-hidden="true"></span><span style="font-size:14px;opacity:.8">Psihologul școlii e aici acum</span></div>
-    <h2>Nu trebuie să fii singur cu asta.</h2>
-    <button class="btn">Vorbește cu psihologul</button>
-    <div><label for="f2">Codul școlii</label><input id="f2" value="CLJ-2024"><p class="demo">date demo</p></div>
-    <div class="msg"><p style="font-size:13px;opacity:.7">Cercul · anonim</p><p>„Și mie mi s-a întâmplat. Ce ai făcut după?"</p><p class="demo">date demo</p></div>
-    <div class="day"><span class="lamp" aria-hidden="true"></span>Ziua: aceeași lampă, pe alb</div>
-  </section>
+<section>
+  <p class="tag">B · boldest that still fits</p>
+  <div class="card b">
+    <div class="band" aria-hidden="true">
+      <svg viewBox="0 0 400 210" width="100%" height="210" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="pastel" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7" result="grain"/>
+            <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.35" result="mask"/>
+            <feComposite in="SourceGraphic" in2="mask" operator="in" result="tex"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="2" result="wob"/>
+            <feDisplacementMap in="tex" in2="wob" scale="9"/>
+          </filter>
+        </defs>
+        <g filter="url(#pastel)">
+          <path d="M-20 150 C60 90 120 190 200 130 S330 60 420 120 L420 230 L-20 230 Z" fill="#B79CF2"/>
+          <path d="M40 60 C90 30 150 40 175 75" stroke="#0e0e0e" stroke-width="16" fill="none" stroke-linecap="round"/>
+          <path d="M235 38 C280 24 330 40 352 80" stroke="#0e0e0e" stroke-width="16" fill="none" stroke-linecap="round"/>
+          <circle cx="200" cy="98" r="30" fill="#0e0e0e"/>
+          <path d="M300 160 C320 140 360 150 380 170" stroke="#fbfaf7" stroke-width="10" fill="none" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="hero">
+      <h2>Nu trece prin asta fără nimeni lângă tine.</h2>
+      <p>Scrie-i psihologului școlii sau intră în cerc, anonim.</p>
+      <button class="btn">Scrie-i psihologului</button>
+      <div class="field">Scrie ce s-a întâmplat…</div>
+      <span class="chip">● Cercul · 12 colegi online</span>
+    </div>
+    <div class="meta">
+      <b>Pastel pe hârtie</b> (Pastel on paper) · brave, warm, hand-made<br>
+      Archivo Expanded 800 / Archivo · radius 10 · balanced<br>
+      <span class="sw" style="background:#fff"></span><span class="sw" style="background:#0e0e0e"></span><span class="sw" style="background:#B79CF2"></span><span class="sw" style="background:#fbfaf7"></span> ground · ink · pastel · paper<br>
+      Signature: oil-pastel bands, grainy texture (SVG material) · anchor: Yashi Singh
+    </div>
+  </div>
+</section>
 
-  <section class="card c3" aria-label="Direcția 3, Abțibild">
-    <p class="tag">3 · Abțibild</p>
-    <svg viewBox="0 0 160 80" width="150" aria-hidden="true">
-      <g stroke="#000" stroke-width="3" fill="#CDBBFF">
-        <rect x="14" y="14" width="74" height="52" rx="26" fill="#000" transform="translate(4 4)"/>
-        <rect x="14" y="14" width="74" height="52" rx="26"/>
-        <rect x="68" y="14" width="74" height="52" rx="26" fill="#000" transform="translate(4 4)"/>
-        <rect x="68" y="14" width="74" height="52" rx="26" fill="#fff"/>
-        <path d="M68 40a26 26 0 0 1 20-25" fill="none"/>
-      </g>
-    </svg>
-    <span class="stk" style="top:40px;right:26px;transform:rotate(8deg)">te cred</span>
-    <span class="stk" style="top:96px;right:60px;transform:rotate(-6deg);background:#fff">nu ești singur</span>
-    <h2>Vorbește. Aici nu te judecă nimeni.</h2>
-    <button class="btn">Vorbește cu psihologul</button>
-    <div><label for="f3">Codul școlii</label><input id="f3" value="CLJ-2024"><p class="demo">date demo</p></div>
-    <div class="msg"><p style="font-size:13px;opacity:.7">Cercul · anonim</p><p>„Și mie mi s-a întâmplat. Ce ai făcut după?"</p><p class="demo">date demo</p></div>
-  </section>
+<section>
+  <p class="tag">C · a step away from the category</p>
+  <div class="card c">
+    <div class="hero">
+      <div class="note" aria-hidden="true">
+        <svg class="paper" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M1 1 H88 L99 12 V99 H1 Z" fill="#fff" stroke="#111" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+          <path d="M88 1 V12 H99 Z" fill="#c9b8fa" stroke="#111" stroke-width="1.2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+        </svg>
+        <div class="to">pentru: psihologul școlii · nimeni altcineva</div>
+        <div class="msg">Cineva din clasă îmi tot scrie lucruri urâte și nu știu cui să spun.</div>
+      </div>
+      <h2>Un bilet pe care îl citește doar cine trebuie.</h2>
+      <p>Ca un bilet dat pe sub bancă: ajunge la psiholog sau la cerc, fără numele tău.</p>
+      <button class="btn">Scrie un bilet</button>
+      <div class="field">Scrie ce s-a întâmplat…</div>
+    </div>
+    <div class="meta">
+      <b>Bilet împăturit</b> (Folded note) · discreet, direct, grown-up<br>
+      Newsreader / Public Sans · radius 6 · balanced-dense<br>
+      <span class="sw" style="background:#fff"></span><span class="sw" style="background:#111"></span><span class="sw" style="background:#c9b8fa"></span><span class="sw" style="background:#5b3fb0"></span> ground · ink · fold · links<br>
+      Signature: the folded corner + a fold-and-send motion (shape motif + motion) · anchor: Roshan's calm layer
+    </div>
+  </div>
+</section>
 
 </div>
 </body>

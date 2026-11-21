@@ -1,7 +1,8 @@
 'use client';
 import { useState } from 'react';
-import { Composer, Thread } from '../../../components/ui';
-import { time, uid, update, useDemo } from '../../../lib/store';
+import { Composer, Thread } from '@/components/bond';
+import { Badge } from '@/components/ui/badge';
+import { time, uid, update, useDemo } from '@/lib/store';
 
 export default function Conversations() {
   const s = useDemo();
@@ -23,7 +24,7 @@ export default function Conversations() {
               return (
                 <li key={x.id}>
                   <button aria-pressed={x.id === t.id} onClick={() => setId(x.id)}>
-                    <span className="item-head"><b>{x.who}</b>{last?.from === 'elev' && <span className="pill new">nou</span>}</span>
+                    <span className="item-head"><b>{x.who}</b>{last?.from === 'elev' && <Badge variant="new">nou</Badge>}</span>
                     <span className="muted small">{last ? `${time(last.at)} · ${last.text.slice(0, 48)}${last.text.length > 48 ? '…' : ''}` : ''}</span>
                   </button>
                 </li>

@@ -1,0 +1,12 @@
+# Routes for shoot.mjs, no leading slash; "." is the base itself.
+.
+elev/
+elev/psiholog/
+elev/cercul/
+elev/raport/
+elev/resurse/
+psiholog/
+psiholog/conversatii/
+psiholog/programari/
+psiholog/rapoarte/
+psiholog/resurse/
