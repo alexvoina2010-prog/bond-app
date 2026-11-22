@@ -8,7 +8,7 @@ const text = Figtree({ subsets: ['latin', 'latin-ext'], variable: '--font-figtre
 
 export const metadata: Metadata = {
   title: 'bond',
-  description: 'Un loc sigur în care elevii vorbesc despre bullying: cu psihologul școlii sau anonim, cu alți elevi. Demo.',
+  description: 'Canalul privat către psihologul școlii: spui unui adult care poate acționa, fără să fii numit, și vezi pas cu pas că se face ceva.',
 };
 export const viewport: Viewport = {
   themeColor: [

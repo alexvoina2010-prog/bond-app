@@ -162,6 +162,40 @@
   /* Entry */
   .entry { max-width: 440px; margin: 0 auto; padding: 40px 16px 24px; display: grid; gap: 24px; min-height: 100dvh; align-content: center; }
 
+  /* Landing (S3.10 demand page): one reading column; the drawing is the only expressive moment. */
+  .landing { max-width: 640px; margin: 0 auto; padding: 32px 16px 48px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  footer.made a { display: inline-flex; align-items: center; min-height: var(--target); padding: 0 6px; }
+  .hero { display: grid; gap: 20px; }
+  /* The journey (components/journey.tsx): a corridor scene, then a thread down a left rail that starts at the open door. */
+  .scene { width: 100%; }
+  .scene .ink-lines path { stroke-width: var(--sw, 2.2px); }
+  .trail { fill: none; stroke: currentColor; stroke-linecap: round; stroke-dasharray: 0.5 9; opacity: 0; }
+  .guide { fill: none; stroke: var(--field); stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: 0.5 7; }
+  .door-light { transform-box: fill-box; transform-origin: 50% 0; }
+  .railed { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; padding-left: calc(7.1875% + 34px); }
+  .thread { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; color: var(--ink); }
+  .knot { fill: var(--ground); stroke: currentColor; stroke-width: 1.8; transition: fill var(--dur) var(--ease-out); }
+  .knot[data-on] { fill: currentColor; }
+  .hero h1 { max-width: 16ch; text-wrap: balance; }
+  .lede { font-size: var(--text-lg); line-height: 1.45; max-width: 34ch; }
+  .why, .why > ol, .why > ol > li { grid-template-columns: minmax(0, 1fr); }
+  .why { display: grid; gap: 20px; }
+  .why > ol { display: grid; gap: 24px; counter-reset: why; }
+  .why > ol > li { display: grid; gap: 6px; padding-left: 40px; position: relative; counter-increment: why; }
+  .why > ol > li::before { content: counter(why); position: absolute; left: 0; top: 0; font-family: var(--font-display); font-size: var(--text-h2); line-height: 1; color: var(--muted); }
+  .why-steps { max-width: 360px; padding-top: 8px; }
+  .next { display: grid; gap: 8px; }
+  .signup { border-top: 1px solid var(--line); padding-top: 32px; scroll-margin-top: 16px; }
+  .signup .moment { display: grid; gap: 12px; justify-items: start; }
+  .prose-page { max-width: 640px; margin: 0 auto; padding: 24px 16px 48px; display: grid; gap: 12px; }
+  .prose-page h2 { font-size: var(--text-lg); font-weight: 500; margin-top: 12px; }
+  .prose-page ul { list-style: disc; padding-left: 20px; display: grid; gap: 4px; }
+  .demo-banner { padding: 8px 16px; font-size: var(--text-sm); background: var(--surface); border-bottom: 1px solid var(--line); }
+  .psy main > .demo-banner { border: 1px solid var(--line); border-radius: var(--radius-sm); }
+  @media (min-width: 860px) {
+    .landing { padding-top: 48px; gap: 56px; }
+  }
+
   /* Student shell: phone-first */
   .student { max-width: 520px; margin: 0 auto; min-height: 100dvh; display: flex; flex-direction: column; }
   .topbar { display: flex; justify-content: space-between; align-items: center; padding: 4px 12px 4px 16px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--ground); z-index: 2; }
@@ -285,12 +319,12 @@
 .press:active { transform: scale(0.96); }
 
 /* Page entrance */
-.student main > *, .psy main > *, .entry > * { animation: rise var(--dur-enter) var(--ease-out) both; }
-:is(.student main, .psy main, .entry) > :nth-child(2) { animation-delay: calc(var(--stagger-section) * 1); }
-:is(.student main, .psy main, .entry) > :nth-child(3) { animation-delay: calc(var(--stagger-section) * 2); }
-:is(.student main, .psy main, .entry) > :nth-child(4) { animation-delay: calc(var(--stagger-section) * 3); }
-:is(.student main, .psy main, .entry) > :nth-child(5) { animation-delay: calc(var(--stagger-section) * 4); }
-:is(.student main, .psy main, .entry) > :nth-child(n + 6) { animation-delay: calc(var(--stagger-section) * 5); }
+.student main > *, .psy main > *, .entry > *, .railed > *, .landing > .wordmark { animation: rise var(--dur-enter) var(--ease-out) both; }
+:is(.student main, .psy main, .entry, .railed) > :nth-child(2) { animation-delay: calc(var(--stagger-section) * 1); }
+:is(.student main, .psy main, .entry, .railed) > :nth-child(3) { animation-delay: calc(var(--stagger-section) * 2); }
+:is(.student main, .psy main, .entry, .railed) > :nth-child(4) { animation-delay: calc(var(--stagger-section) * 3); }
+:is(.student main, .psy main, .entry, .railed) > :nth-child(5) { animation-delay: calc(var(--stagger-section) * 4); }
+:is(.student main, .psy main, .entry, .railed) > :nth-child(n + 6) { animation-delay: calc(var(--stagger-section) * 5); }
 .student main > .doors { animation: none; }
 .doors li, .tiles > * { animation: rise var(--dur-enter) var(--ease-out) both; animation-delay: calc(var(--stagger-section) * 2); }
 :is(.doors li, .tiles > *):nth-child(2) { animation-delay: calc(var(--stagger-section) * 2 + var(--stagger)); }
@@ -298,6 +332,11 @@
 :is(.doors li, .tiles > *):nth-child(n + 4) { animation-delay: calc(var(--stagger-section) * 2 + var(--stagger) * 3); }
 
 /* The signature draws itself on once, where it is marked `draw`. */
+.door-light[data-lit] { animation: lit 500ms var(--ease-out); }
+/* The flight's route shows for a moment after landing, then fades, so nothing is left crossing the drawing. */
+.trail[data-on] { animation: trail-fade 1600ms var(--ease-out) both; }
+@keyframes trail-fade { from { opacity: 0.5; } to { opacity: 0; } }
+@keyframes lit { 0% { transform: scaleY(0.55); } 60% { transform: scaleY(1.12); } 100% { transform: none; } }
 .ink-draw .ink-lines path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw var(--dur-draw) var(--ease-out) forwards; animation-delay: calc(var(--n) * 120ms + 100ms); }
 .ink-draw .ink-patch { transform-origin: center; transform-box: fill-box; animation: patch-in var(--dur-enter) var(--ease-out) both; }
 .moment > :nth-child(2) { animation: rise var(--dur-enter) var(--ease-out) 120ms both; }
@@ -350,6 +389,9 @@ details.panel[open]::details-content { block-size: auto; opacity: 1; }
   .doors a:hover { background: var(--surface); }
   .split nav button:hover, .sidebar nav a:hover { background: var(--surface); }
 }
+
+/* DESIGN.md exception: the journey's door light is the page's one light source, so at 0.32 on #121212 it read as a shadow. */
+@media (prefers-color-scheme: dark) { .scene { --tint-opacity: 0.55; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after, ::backdrop, ::details-content { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

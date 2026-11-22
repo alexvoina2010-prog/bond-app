@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bond · D2 previews</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+<style>
+  /* Rough previews for D2 only: tokens copied from DESIGN.md, not production code. */
+  :root { --ground:#fff; --surface:#f7f6f3; --ink:#141414; --muted:#55555c; --line:#e6e6ea; --tint:#c4b2f7; --tint-o:.85; --accent:#5a3ea8;
+          --appear:cubic-bezier(.32,.72,0,1); --move:cubic-bezier(.77,0,.175,1); }
+  @media (prefers-color-scheme: dark) { :root { --ground:#121212; --surface:#1c1c1e; --ink:#f2f2f0; --muted:#a5a5ad; --line:#2c2c2f; --tint-o:.32; --accent:#c9b8fa; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--ground); color:var(--ink); font:16px/1.5 Figtree, system-ui, sans-serif; }
+  h1,h2,h3 { font-family: Fraunces, serif; font-optical-sizing:auto; letter-spacing:-.01em; line-height:1.08; margin:0; }
+  h1 { font-weight:300; font-size:clamp(32px, 6vw, 44px); max-width:16ch; text-wrap:balance; }
+  h2 { font-weight:400; font-size:25px; } h3 { font-weight:500; font-size:20px; }
+  p { margin:0; } .muted { color:var(--muted); } .small { font-size:14px; }
+  .tabs { position:sticky; top:0; z-index:20; display:flex; gap:8px; padding:10px 16px; background:var(--ground); border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  .tabs button { font:600 14px Figtree, sans-serif; min-height:44px; padding:0 14px; border-radius:14px; border:1px solid var(--line); background:transparent; color:var(--ink); cursor:pointer; }
+  .tabs button[aria-pressed=true] { background:var(--ink); color:var(--ground); border-color:var(--ink); }
+  .tabs .note { align-self:center; font-size:13px; color:var(--muted); }
+  .opt { display:none; } .opt.on { display:block; }
+  .wrap { max-width:640px; margin:0 auto; padding:32px 16px 64px; display:grid; gap:40px; position:relative; }
+  .btns { display:flex; gap:12px; flex-wrap:wrap; }
+  .btn { display:inline-flex; align-items:center; min-height:48px; padding:0 20px; border-radius:14px; font-weight:600; text-decoration:none; border:1px solid var(--ink); background:var(--ink); color:var(--ground); }
+  .btn.sec { background:transparent; color:var(--ink); border-color:var(--line); }
+  .wordmark { font:500 30px Fraunces, serif; letter-spacing:-.02em; }
+  .ink-line { fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+  .patch { fill:var(--tint); opacity:var(--tint-o); }
+  .draw path { stroke-dasharray:1; stroke-dashoffset:1; animation:draw 900ms var(--appear) forwards; animation-delay:calc(var(--n,0) * 120ms); }
+  @keyframes draw { to { stroke-dashoffset:0; } }
+  .section { display:grid; gap:8px; }
+  .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; max-width:360px; font-size:12px; color:var(--muted); }
+  .steps span::before { content:''; display:block; height:3px; border-radius:2px; background:var(--ink); margin-bottom:4px; }
+  .steps span:last-child::before { background:var(--line); }
+  .form { border-top:1px solid var(--line); padding-top:32px; display:grid; gap:12px; }
+  .field { min-height:48px; border:1px solid #8a8a93; border-radius:12px; }
+
+  /* ── 2 · Hero scene ── */
+  .scene { width:100%; height:auto; color:var(--ink); overflow:visible; }
+  .scene .light { transform-origin:600px 262px; animation:light 9s var(--move) infinite; }
+  @keyframes light { 0%,58% { opacity:.35; transform:scaleX(.8); } 70%,88% { opacity:var(--tint-o); transform:none; } 100% { opacity:.35; transform:scaleX(.8); } }
+  .scene .mover { animation:fly 9s var(--move) infinite; offset-path:path('M128 150 C200 40 330 40 410 120 S540 230 586 236'); offset-rotate:0deg; }
+  @keyframes fly { 0%,8% { offset-distance:0%; opacity:0; } 14% { opacity:1; } 62% { offset-distance:100%; opacity:1; transform:scale(1); } 68%,100% { offset-distance:100%; opacity:0; transform:scale(.6); } }
+  .scene .trail { stroke-dasharray:1; stroke-dashoffset:1; animation:trail 9s var(--move) infinite; }
+  @keyframes trail { 0%,8% { stroke-dashoffset:1; opacity:.5; } 62% { stroke-dashoffset:0; opacity:.5; } 80%,100% { stroke-dashoffset:0; opacity:0; } }
+  .scene .phone-glow { animation:blink 9s steps(1) infinite; }
+  @keyframes blink { 0%,6% { opacity:1; } 7%,100% { opacity:0; } }
+
+  /* ── 1 · Ink thread ── */
+  .thread-svg { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; color:var(--ink); overflow:visible; z-index:0; }
+  .thread-wrap > :not(.thread-svg) { position:relative; z-index:1; }
+  .thread-wrap { padding-left:56px; }
+  .thread-wrap .tall { min-height:60vh; display:grid; align-content:center; gap:8px; }
+  .rider { transition:opacity .3s; }
+
+  /* ── 3 · Drifting field ── */
+  .field-bg { position:fixed; inset:56px 0 0 0; pointer-events:none; color:var(--ink); overflow:hidden; z-index:0; }
+  .field-bg svg { position:absolute; overflow:visible; animation:drift var(--d,22s) ease-in-out infinite alternate; opacity:.55; }
+  .field-bg .blob { position:absolute; border-radius:48% 52% 45% 55%; background:var(--tint); opacity:calc(var(--tint-o) * .35); animation:drift var(--d,30s) ease-in-out infinite alternate; }
+  @keyframes drift { from { transform:translate(0,0) rotate(-4deg); } to { transform:translate(var(--x,30px), var(--y,-40px)) rotate(5deg); } }
+  #opt3 .wrap { z-index:1; }
+  #opt3 .wrap > * { background:color-mix(in srgb, var(--ground) 82%, transparent); }
+
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation:none !important; transition:none !important; } .draw path { stroke-dashoffset:0; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="ink-rough" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="1.4"/></filter>
+  <symbol id="note" viewBox="0 0 240 160"><g class="ink-line" filter="url(#ink-rough)"><path d="M96 52 L154 43 L176 60 L182 110 L108 122 Z"/><path d="M154 43 L158 63 L176 60"/><path d="M112 70 L160 62 M115 84 L163 76 M118 98 L148 93"/></g></symbol>
+</svg>
+
+<nav class="tabs" aria-label="Previzualizări">
+  <button data-opt="opt2" aria-pressed="true">2 · Scenă animată</button>
+  <button data-opt="opt1" aria-pressed="false">1 · Firul de cerneală</button>
+  <button data-opt="opt3" aria-pressed="false">3 · Câmp în derivă</button>
+  <span class="note">Schițe brute pentru alegere (D2). Derulează în fiecare.</span>
+</nav>
+
+<!-- ══ Option 2: animated hero scene ══ -->
+<section id="opt2" class="opt on">
+  <div class="wrap">
+    <p class="wordmark">bond</p>
+    <svg class="scene draw" viewBox="0 0 720 300" aria-hidden="true">
+      <!-- the one lilac patch: the light on the floor in front of the door -->
+      <path class="patch light" d="M556 262 L640 262 L712 296 L560 296 Z"/>
+      <g class="ink-line" filter="url(#ink-rough)">
+        <path style="--n:0" pathLength="1" d="M0 262 L720 262"/>                                   <!-- corridor floor -->
+        <path style="--n:1" pathLength="1" d="M60 248 L60 120 C60 110 70 104 80 104 L128 104 C138 104 146 110 146 120 L146 248 C146 256 138 262 128 262 L80 262 C70 262 60 256 60 248 Z"/> <!-- phone -->
+        <path style="--n:2" pathLength="1" d="M76 128 L130 128 M76 146 L120 146 M76 164 L126 164"/>   <!-- phone text -->
+        <path style="--n:3" pathLength="1" d="M200 262 L200 150 L236 150 L236 262 M244 262 L244 150 L280 150 L280 262 M210 170 L226 170 M254 170 L270 170"/> <!-- lockers -->
+        <path style="--n:4" pathLength="1" d="M340 70 L440 70 L440 140 L340 140 Z M390 70 L390 140"/> <!-- window -->
+        <path style="--n:5" pathLength="1" d="M558 262 L558 120 L640 120 L640 262"/>                 <!-- doorway -->
+        <path style="--n:6" pathLength="1" d="M558 120 L528 108 L528 276 L558 262"/>                <!-- door, open -->
+        <path style="--n:7" pathLength="1" d="M537 190 L537 198"/>                                   <!-- handle -->
+        <path class="trail" pathLength="1" d="M128 150 C200 40 330 40 410 120 S540 230 586 236" stroke-dasharray="0.02 0.03"/>
+      </g>
+      <circle class="phone-glow" cx="103" cy="112" r="0"/>
+      <g class="mover"><use href="#note" x="-26" y="-18" width="64" height="43"/></g>
+    </svg>
+    <div style="display:grid;gap:20px">
+      <h1>Spune unui adult de la școală. Fără să fii numit.</h1>
+      <p style="font-size:20px;line-height:1.45;max-width:34ch">bond e canalul privat către psihologul școlii. Îi scrii de pe telefon, fără numele tău dacă vrei, și vezi pas cu pas că se face ceva.</p>
+      <p class="small muted">Încă nu funcționează la nicio școală. Acum strângem elevii care îl vor la liceul lor.</p>
+      <div class="btns"><a class="btn" href="#">Vreau bond la liceul meu</a><a class="btn sec" href="#">Vezi demo-ul</a></div>
+    </div>
+    <p class="muted small">Restul paginii rămâne calm, ca acum.</p>
+  </div>
+</section>
+
+<!-- ══ Option 1: ink thread down the page ══ -->
+<section id="opt1" class="opt">
+  <div class="wrap thread-wrap" id="threadWrap">
+    <svg class="thread-svg" id="threadSvg" aria-hidden="true">
+      <path id="threadPath" class="ink-line" filter="url(#ink-rough)" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1"/>
+      <path id="doorPatch" class="patch" style="opacity:0;transition:opacity .6s"/>
+      <g id="door" class="ink-line" filter="url(#ink-rough)" style="opacity:0;transition:opacity .6s"></g>
+      <g id="rider" class="rider"><use href="#note" x="-24" y="-16" width="56" height="37"/></g>
+    </svg>
+    <div class="tall">
+      <p class="wordmark">bond</p>
+      <h1>Spune unui adult de la școală. Fără să fii numit.</h1>
+      <p class="muted">bond e canalul privat către psihologul școlii. Îi scrii de pe telefon, fără numele tău dacă vrei, și vezi pas cu pas că se face ceva.</p>
+      <div class="btns"><a class="btn" href="#">Vreau bond la liceul meu</a><a class="btn sec" href="#">Vezi demo-ul</a></div>
+      <p class="small muted">↓ derulează: firul se desenează și biletul coboară pe el</p>
+    </div>
+    <div class="tall section"><h3>1 · Nimeni nu te vede mergând la cabinet.</h3><p class="muted">Scrii de pe telefon, de unde vrei. Dacă trimiți anonim, nici psihologul nu vede numele tău.</p></div>
+    <div class="tall section"><h3>2 · Nu rămâne la „lasă că vorbesc eu cu ei”.</h3><p class="muted">Fiecare raport are o stare, iar psihologul îți răspunde chiar în raport.</p><div class="steps"><span>Primit</span><span>Văzut</span><span>Se ocupă</span><span>Închis</span></div></div>
+    <div class="tall section"><h3>3 · Poți spune și ce ai văzut la altcineva.</h3><p class="muted">Alegi „Am văzut la altcineva”. Psihologul are un ghid ca să intervină fără să arate cine a spus.</p></div>
+    <div class="tall form" id="threadEnd"><h2>Vreau bond la liceul meu</h2><div class="field"></div><div class="field"></div><a class="btn" href="#" style="justify-content:center">Trimite</a></div>
+  </div>
+</section>
+
+<!-- ══ Option 3: drifting ink field ══ -->
+<section id="opt3" class="opt">
+  <div class="field-bg" id="fieldBg" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="wordmark" style="width:max-content">bond</p>
+    <div style="display:grid;gap:20px;padding:8px 0">
+      <h1>Spune unui adult de la școală. Fără să fii numit.</h1>
+      <p style="font-size:20px;line-height:1.45;max-width:34ch">bond e canalul privat către psihologul școlii. Îi scrii de pe telefon, fără numele tău dacă vrei, și vezi pas cu pas că se face ceva.</p>
+      <div class="btns"><a class="btn" href="#">Vreau bond la liceul meu</a><a class="btn sec" href="#">Vezi demo-ul</a></div>
+    </div>
+    <div class="section" style="min-height:50vh"><h3>1 · Nimeni nu te vede mergând la cabinet.</h3><p class="muted">Fundalul se mișcă încet în spatele întregii pagini.</p></div>
+  </div>
+</section>
+
+<script>
+  // Tabs
+  const tabs = document.querySelectorAll('.tabs button');
+  tabs.forEach(b => b.addEventListener('click', () => {
+    tabs.forEach(t => t.setAttribute('aria-pressed', t === b));
+    document.querySelectorAll('.opt').forEach(o => o.classList.toggle('on', o.id === b.dataset.opt));
+    scrollTo(0, 0); layoutThread();
+  }));
+
+  // Option 1: a hand-drawn line that snakes down the left gutter, drawn by scroll; the note rides its tip.
+  const svg = document.getElementById('threadSvg'), path = document.getElementById('threadPath'), rider = document.getElementById('rider');
+  function layoutThread() {
+    const wrap = document.getElementById('threadWrap'); if (!wrap.offsetParent) return;
+    const H = wrap.scrollHeight, end = document.getElementById('threadEnd').offsetTop + 24;
+    const segs = 7; let d = 'M28 40';
+    for (let i = 1; i <= segs; i++) { const y = 40 + (end - 40) * i / segs, x = i % 2 ? 44 : 14; d += ` S${x} ${y - (end / segs) * .5} ${i === segs ? 28 : x} ${y}`; }
+    path.setAttribute('d', d);
+    const ex = 28, ey = end;   // the door at the end of the line, light on the floor (the one lilac patch)
+    document.getElementById('door').innerHTML = `<path d="M${ex-6} ${ey+60} L${ex-6} ${ey} L${ex+30} ${ey} L${ex+30} ${ey+60}"/><path d="M${ex-6} ${ey} L${ex-20} ${ey-6} L${ex-20} ${ey+68} L${ex-6} ${ey+60}"/>`;
+    document.getElementById('doorPatch').setAttribute('d', `M${ex-6} ${ey+60} L${ex+30} ${ey+60} L${ex+60} ${ey+76} L${ex-4} ${ey+76} Z`);
+    svg.setAttribute('viewBox', `0 0 ${wrap.clientWidth} ${H}`); onScroll();
+  }
+  function onScroll() {
+    const wrap = document.getElementById('threadWrap'); if (!wrap.offsetParent) return;
+    const r = wrap.getBoundingClientRect(), p = Math.min(1, Math.max(0, (innerHeight * .6 - r.top) / (r.height - innerHeight * .4)));
+    path.style.strokeDashoffset = 1 - p;
+    const L = path.getTotalLength(), pt = path.getPointAtLength(L * p);
+    rider.setAttribute('transform', `translate(${pt.x} ${pt.y})`);
+    rider.style.opacity = p > .98 ? 0 : 1;
+    document.getElementById('door').style.opacity = document.getElementById('doorPatch').style.opacity = p > .9 ? 1 : 0;
+  }
+  addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', layoutThread);
+
+  // Option 3: scattered small marks and flat lilac patches drifting slowly; a little pointer parallax.
+  const bg = document.getElementById('fieldBg'), marks = ['M2 8 L20 5 L26 11 L28 28 L6 31 Z', 'M2 10 C2 2 30 2 30 10 C30 18 16 18 10 18 L4 24 L6 16 C3 14 2 12 2 10 Z', 'M4 30 L4 4 L24 4 L24 30 M4 4 L-4 1 L-4 34 L4 30'];
+  let seed = 7; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  for (let i = 0; i < 6; i++) { const b = document.createElement('div'); b.className = 'blob'; const s = 120 + rnd() * 220; Object.assign(b.style, { width: s + 'px', height: s * .7 + 'px', left: rnd() * 90 + '%', top: rnd() * 90 + '%', '--d': 24 + rnd() * 20 + 's', '--x': (rnd() * 80 - 40) + 'px', '--y': (rnd() * 80 - 40) + 'px' }); bg.append(b); }
+  for (let i = 0; i < 26; i++) { const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); s.setAttribute('viewBox', '-6 0 40 36'); s.setAttribute('width', 26 + rnd() * 18); s.innerHTML = `<path class="ink-line" filter="url(#ink-rough)" d="${marks[i % 3]}"/>`; Object.assign(s.style, { left: rnd() * 96 + '%', top: rnd() * 96 + '%', '--d': 16 + rnd() * 18 + 's', '--x': (rnd() * 60 - 30) + 'px', '--y': (rnd() * 60 - 30) + 'px' }); bg.append(s); }
+  addEventListener('pointermove', e => { bg.style.transform = `translate(${(e.clientX / innerWidth - .5) * -14}px, ${(e.clientY / innerHeight - .5) * -14}px)`; });
+</script>
+</body>
+</html>

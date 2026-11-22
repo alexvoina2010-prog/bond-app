@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useMounted } from '@/lib/store';
+import { DemoBanner } from '@/components/demo-banner';
 
 const TABS = [
   { href: '/elev', label: 'Acasă', icon: <path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z" /> },
@@ -21,6 +22,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
         {/* Quick exit: replaces this page in history, so Back does not return to bond. */}
         <button type="button" className="exit" onClick={() => location.replace('https://www.google.ro/')}>Ieși repede</button>
       </header>
+      <DemoBanner />
       <main>{mounted ? children : null}</main>
       <nav className="tabbar" aria-label="Meniu">
         <ul>

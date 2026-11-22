@@ -1,0 +1,14 @@
+<!doctype html>
+<!-- Static twin of the waitlist form in app/page.tsx. Netlify reads this file at deploy to register the form; the page POSTs here. Keep the fields in sync. -->
+<html lang="ro">
+<head><meta charset="utf-8"><title>bond waitlist form</title></head>
+<body>
+  <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input name="bot-field">
+    <input name="age">
+    <input name="email" type="email">
+    <input name="updates">
+    <input name="src">
+  </form>
+</body>
+</html>

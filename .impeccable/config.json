@@ -8,6 +8,24 @@
         "value": "fraunces",
         "createdAt": "2026-11-21T12:22:12.326Z",
         "reason": "Alex picked D1 card A 'Linie de cerneală' on 2026-11-21; the card names Fraunces/Figtree as its type (.visage/directions.md)"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          ".visage/previews/d2-elements.html"
+        ],
+        "createdAt": "2026-11-22T08:12:31.384Z",
+        "reason": "Claude (Visage run): throwaway D2 choice preview, never shipped; removed after Alex picks"
+      },
+      {
+        "rule": "skipped-heading",
+        "value": "*",
+        "files": [
+          ".visage/previews/d2-elements.html"
+        ],
+        "createdAt": "2026-11-22T08:12:31.917Z",
+        "reason": "Claude (Visage run): throwaway D2 choice preview, never shipped; removed after Alex picks"
       }
     ]
   }

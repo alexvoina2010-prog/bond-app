@@ -28,14 +28,15 @@ npm run build      # static site in out/
 ```
 
 ## Demo script (2 windows side by side, same browser)
-1. Left window: `/` → **Intră ca elev** (shrink it to phone width). Right window: `/` → **Intră ca psiholog**.
+0. `/` is now the S3.10 demand page (waitlist). **Vezi demo-ul** (or `/demo/`) opens the demo entry.
+1. Left window: `/demo/` → **Intră ca elev** (shrink it to phone width). Right window: `/demo/` → **Intră ca psiholog**.
 2. Student → **Ceva nu e ok? Spune-i cuiva** → "Am văzut la altcineva", leave **anonim** on → Trimite.
 3. Psychologist → **Rapoarte**: the new report says "anonim", with no name anywhere. Open it → **Se ocupă** → write a reply.
 4. Student → **Rapoarte**: "mesaj nou", the status line on "Se ocupă", and the reply. The student can answer back, still anonymous.
 5. Psychologist → open **Cum acționezi fără să arăți cine a scris** → **Export pentru comisia… (CPCV)**: a CSV with only the permitted reports and no names.
 6. Student → Psiholog: write "nu mai vreau să trăiesc" → crisis sheet with 112, 116 111 and 119, and a red alert on the **Panou**. The same works inside a report reply, and the alert says "Anonim".
 7. Psychologist: switch **Disponibil** off. The student's presence line changes.
-8. Before presenting: **Resetează datele demo** on the entry screen. "Ieși repede" leaves the demo; open `/` again to switch roles.
+8. Before presenting: **Resetează datele demo** on the entry screen. "Ieși repede" leaves the demo; open `/demo/` again to switch roles.
 
 ## Limits (say them if the jury asks)
 - Demo only: no real accounts, no server, no data leaves the browser. In the real version, anonymity is enforced by the database: the link between a report and its author sits in a table the psychologist cannot read. This was tested in a spike (9/9 checks; `07-solution/spike/spike.mjs` in the dossier).

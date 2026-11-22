@@ -1,0 +1,402 @@
+[
+ {
+  "route": ".",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 2
+ },
+ {
+  "route": "confidentialitate/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "demo/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "elev/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "psiholog/",
+  "w": 390,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": ".",
+  "w": 768,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 2
+ },
+ {
+  "route": "confidentialitate/",
+  "w": 768,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "demo/",
+  "w": 768,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "elev/",
+  "w": 768,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "psiholog/",
+  "w": 768,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": ".",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 2
+ },
+ {
+  "route": "confidentialitate/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "demo/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "elev/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "psiholog/",
+  "w": 1280,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": ".",
+  "w": 1440,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 2
+ },
+ {
+  "route": "confidentialitate/",
+  "w": 1440,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "demo/",
+  "w": 1440,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "elev/",
+  "w": 1440,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "psiholog/",
+  "w": 1440,
+  "scheme": "light",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": ".",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 2
+ },
+ {
+  "route": "confidentialitate/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "demo/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "elev/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "psiholog/",
+  "w": 390,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": ".",
+  "w": 768,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 2
+ },
+ {
+  "route": "confidentialitate/",
+  "w": 768,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "demo/",
+  "w": 768,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "elev/",
+  "w": 768,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "psiholog/",
+  "w": 768,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": ".",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 2
+ },
+ {
+  "route": "confidentialitate/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "demo/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "elev/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "psiholog/",
+  "w": 1280,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": ".",
+  "w": 1440,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 2
+ },
+ {
+  "route": "confidentialitate/",
+  "w": 1440,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ },
+ {
+  "route": "demo/",
+  "w": 1440,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "elev/",
+  "w": 1440,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 1
+ },
+ {
+  "route": "psiholog/",
+  "w": 1440,
+  "scheme": "dark",
+  "overflow": false,
+  "h1": 1,
+  "small": [],
+  "unlabelled": [],
+  "primaries": 0
+ }
+]

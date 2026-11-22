@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Switch } from '@/components/ui/switch';
 import { update, useDemo, useMounted } from '@/lib/store';
+import { DemoBanner } from '@/components/demo-banner';
 
 const NAV = [
   ['/psiholog', 'Panou'], ['/psiholog/conversatii', 'Conversații'], ['/psiholog/programari', 'Programări'],
@@ -25,7 +26,7 @@ export default function PsyLayout({ children }: { children: React.ReactNode }) {
       <aside className="sidebar">
         <div className="row" style={{ justifyContent: 'space-between' }}>
           <Link href="/psiholog" className="wordmark">bond</Link>
-          <Link href="/" className="exit">Ieși</Link>
+          <Link href="/demo/" className="exit">Ieși</Link>
         </div>
         <label className="switch-row" htmlFor="avail">
           <Switch id="avail" checked={online} onCheckedChange={(v) => update((d) => { d.psyOnline = v; })} />
@@ -45,7 +46,7 @@ export default function PsyLayout({ children }: { children: React.ReactNode }) {
         </nav>
         <p className="small muted" style={{ marginTop: 'auto' }}>Psiholog școlar · Școala demo</p>
       </aside>
-      <main>{mounted ? children : null}</main>
+      <main><DemoBanner />{mounted ? children : null}</main>
     </div>
   );
 }
