@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Script from 'next/script';
 import { Ink } from '@/components/ink';
 import { Steps } from '@/components/bond';
 import { Journey } from '@/components/journey';
@@ -63,6 +64,8 @@ export default function Landing() {
 
   return (
     <>
+      {/* Cookieless visitor counter (Gate 3 visitors). Counts path + ?src=; ignores localhost. Landing only, so demo visits don't count. */}
+      <Script data-goatcounter="https://ttaavo.goatcounter.com/count" src="https://gc.zgo.at/count.js" strategy="afterInteractive" />
       <main className="landing">
         <p className="wordmark wordmark-lg">bond</p>
         <Journey>
