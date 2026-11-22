@@ -58,3 +58,14 @@ Not checked: a real phone, a screen reader, Safari/iOS, the Netlify form registr
 | One lilac patch | pass | The door light only. Dark is 0.55 (recorded exception) |
 | Motion budget | pass | Intro ≈2.7 s (motion-craft); scroll is direct manipulation |
 | Not checked | — | Real phone, iOS Safari (SMIL), scroll performance on low-end hardware, the success state's end point |
+
+## Final pass (2026-11-22, after Alex moved the helplines to the bottom)
+| Item | Result | Evidence |
+|---|---|---|
+| 320 px, no sideways scroll | pass | `.visage/shots-final`: 50 route captures at 320/390/768/1280/1440, light and dark, all `overflow:false` |
+| Targets, labels, one h1 | pass | Audit: 0 small, 0 unlabelled, h1 = 1 on every route |
+| Error and success states | pass | `states-landing.mjs`: form errors (focus on the first radio, both errors shown), sent 16+, sent 14–15 (fetch stubbed); contact sheets `state-*` |
+| Keyboard order | pass | Help link → hero CTA → demo → age → email → updates → privacy → Trimite → 112 / 116 111 / 119 → footer |
+| Humanizer | pass | Skill run on all page copy: one repeat removed (benefit 1 no longer echoes the lede) |
+| Helplines | moved, kept | Now after the sign-up (`#ajutor`), with a small „Numere de ajutor” link in the hero line. Kept because the page draws students in trouble and tells them they cannot report here |
+| Not checked | — | Real phone, iOS Safari, throttled LCP, screen reader |

@@ -73,7 +73,7 @@ export function Journey({ children }: { children: React.ReactNode }) {
     const ys = [...box.querySelectorAll<HTMLElement>('[data-knot], [data-thread-end]')].map((el) => {
       let y = 0;
       for (let n: HTMLElement | null = el; n && n !== box; n = n.offsetParent as HTMLElement | null) y += n.offsetTop;
-      return y + Math.min(el.offsetHeight / 2, 16);
+      return y + (Number(el.dataset.threadEnd) || Math.min(el.offsetHeight / 2, 16)); // data-thread-end="96": land 96 px down (a drawing's floor)
     });
     if (!ys.length) return;
     // Hand-drawn: each stretch bows a little to alternate sides and passes exactly through each knot.

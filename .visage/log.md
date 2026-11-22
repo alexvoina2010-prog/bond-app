@@ -124,3 +124,8 @@
 - Finish review on the journey (3 rounds; the first two asked for valid recaptures). The cold-load glitch was real: the thread now also re-lays out when the drawing resizes, and the ResizeObserver runs on the next frame. Captures are now taken from the production build (`out/` served on :3103, launch config `bond-app-v3-static`), so the dev indicator is gone.
 - Applied 7 of the 8 fixes: the flight route no longer crosses the board (its trail fades after landing); a faint guide shows the whole thread from the start; knots are measured with offsetTop (immune to the entrance rise); door light 0.55 in dark (DESIGN.md exception); the phone is in the foreground, cut by the frame; a landing fallback in case endEvent never fires (Safari); a 34 px note gap. Not applied: #8 (the thread end on the success state); the note still lands beside "Gata…".
 - Scroll test in the pane: 33 ms frames both with and without the thread. The pane is hidden, so it is throttled to 30 fps; the thread adds nothing measurable. A real phone was not tested.
+
+## 2026-11-22 · seed · helplines moved, final checks
+- Alex: the helpline box goes to the very bottom, after the sign-up, "or maybe removed". It was moved, not removed: a student in danger who lands on a page that says "you can't report here" needs a next step. A small „Numere de ajutor” link stays in the hero's not-live line. The notice knot left the thread.
+- Reviewer #8 done: after sign-up the thread ends at the door drawing's floor (`data-thread-end="96"`).
+- Humanizer run on the copy (one repeat fixed); full captures at 5 widths and 3 form states from the production build; keyboard order checked. Log and table in `checks/seed.md`.

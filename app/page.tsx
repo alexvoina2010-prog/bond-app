@@ -69,29 +69,19 @@ export default function Landing() {
         <section className="hero">
           <h1>Spune unui adult de la școală. Fără să fii numit.</h1>
           <p className="lede">bond e canalul privat către psihologul școlii. Îi scrii de pe telefon, fără numele tău dacă vrei, și vezi pas cu pas că se face ceva.</p>
-          <p className="small muted">Încă nu funcționează la nicio școală. Acum strângem elevii care îl vor la liceul lor.</p>
+          <p className="small muted">Încă nu funcționează la nicio școală. Acum strângem elevii care îl vor la liceul lor. În pericol acum? <a href="#ajutor">Numere de ajutor</a></p>
           <div className="row">
             <Button asChild><a href="#inscriere">Vreau bond la liceul meu</a></Button>
             <Button asChild variant="secondary"><Link href="/demo/">Vezi demo-ul</Link></Button>
           </div>
         </section>
 
-        <div className="notice stack-tight" data-knot>
-          <p>De aici nu poți raporta nimic: bond nu e pornit încă. Dacă ești în pericol acum, sună.</p>
-          <div className="row">
-            <Button asChild variant="destructive"><a href="tel:112">Sună la 112</a></Button>
-            <Button asChild variant="secondary"><a href="tel:116111">116 111 · Telefonul copilului</a></Button>
-            <Button asChild variant="secondary"><a href="tel:119">119 · Abuz asupra copiilor</a></Button>
-          </div>
-          <p className="small muted">116 111 răspunde zilnic între 8 și 20. 112 și 119, oricând.</p>
-        </div>
-
         <section className="why" aria-labelledby="why-h">
           <h2 id="why-h">Ce face altfel</h2>
           <ol>
             <li>
               <h3 data-knot>Nimeni nu te vede mergând la cabinet.</h3>
-              <p className="muted">Scrii de pe telefon, de unde vrei. Dacă trimiți anonim, nici psihologul nu vede numele tău.</p>
+              <p className="muted">Nu mai intri la cabinet în pauză, cu toți văzând. Dacă trimiți anonim, nici psihologul nu vede numele tău.</p>
             </li>
             <li>
               <h3 data-knot>Nu rămâne la „lasă că vorbesc eu cu ei”.</h3>
@@ -113,8 +103,8 @@ export default function Landing() {
         <section id="inscriere" className="signup" aria-labelledby="signup-h">
           {sent ? (
             <div className="moment" aria-live="polite">
-              <Ink name="door" width={180} draw />
-              <h2 id="signup-h" ref={done} tabIndex={-1} className="focus-target" data-thread-end>
+              <div data-thread-end="96"><Ink name="door" width={180} draw /></div>
+              <h2 id="signup-h" ref={done} tabIndex={-1} className="focus-target">
                 {sent.minor ? 'Gata. Îi scriem părintelui tău.' : 'Gata, ești pe listă.'}
               </h2>
               <p className="muted">
@@ -151,6 +141,16 @@ export default function Landing() {
           )}
         </section>
         </Journey>
+        <section id="ajutor" className="notice stack-tight help" aria-labelledby="help-h">
+          <h2 id="help-h" className="h-sm">Dacă ești în pericol acum</h2>
+          <p>De aici nu poți raporta nimic: bond nu e pornit încă. Sună direct.</p>
+          <div className="row">
+            <Button asChild variant="destructive"><a href="tel:112">Sună la 112</a></Button>
+            <Button asChild variant="secondary"><a href="tel:116111">116 111 · Telefonul copilului</a></Button>
+            <Button asChild variant="secondary"><a href="tel:119">119 · Abuz asupra copiilor</a></Button>
+          </div>
+          <p className="small muted">116 111 răspunde zilnic între 8 și 20. 112 și 119, oricând.</p>
+        </section>
       </main>
       <footer className="made">
         <Link href="/confidentialitate/">Confidențialitate</Link> · <Link href="/demo/">Demo</Link> · bond · <span lang="en">made by ttaavo</span>
